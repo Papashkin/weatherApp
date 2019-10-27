@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
-def baseUrl = "\"https://weather.aw.ee/api/\""
+def baseUrl = "\"https://weather.aw.ee/api/estonia/\""
 
 android {
     compileSdkVersion 29
@@ -30,7 +30,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            minifyEnabled true
+            minifyEnabled false
             debuggable true
             buildConfigField("String", "BASE_URL", baseUrl)
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -88,7 +88,6 @@ dependencies {
     implementation "com.github.moxy-community:moxy-ktx:$moxyVersion"
 
     // API
-    implementation('com.squareup.okhttp3:okhttp:4.2.2')
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.github.mrmike:ok2curl:0.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'

@@ -33,6 +33,7 @@ class ForecastPresenter @Inject constructor(
             val forecasts = getForecasts()
             viewState.update(forecasts)
         } catch (e: Exception) {
+            e.printStackTrace()
             viewState.showError()
         }
     }

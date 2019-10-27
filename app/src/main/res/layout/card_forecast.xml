@@ -4,52 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="6dp"
+    android:background="@drawable/shape_forecast_card"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvDate"
         style="@style/TextStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="20/07/2019" />
 
+    <Switch
+        android:id="@+id/switchDayNight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:showText="true"
+        android:switchMinWidth="100dp"
+        android:switchTextAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorPrimaryDark"
+        android:textOff="Night"
+        android:textOn="Day"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDate" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clDay"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        app:layout_constraintEnd_toStartOf="@id/clNight"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDate">
-
-        <TextView
-            android:id="@+id/tvDay"
-            style="@style/TextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Day"
-            android:textAlignment="center"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/switchDayNight">
 
         <TextView
             android:id="@+id/tvDayTemp"
             style="@style/BaseTextStyle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDay"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="+5 .. +8" />
 
         <ImageView
             android:id="@+id/ivDayPhenomenon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/tvDayTemp"
-            app:layout_constraintTop_toBottomOf="@id/tvDay"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/tvDayTemp"
+            app:layout_constraintTop_toTopOf="@id/tvDayTemp"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -57,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDayTemp"
+            app:layout_constraintTop_toBottomOf="@id/ivDayPhenomenon"
             tools:text="Partly cloudy. In forenoon locally, in afternoon area of precipitation is moving from west to east. Rain, on mainland locally sleet too.  Variable wind 1-7, in afternoon increasing northwest, north on islands and coast up to 10, in gusts 13 m/s. Air temperature 3..7°C." />
 
         <TextView
@@ -79,37 +92,30 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clNight"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/clDay"
-        app:layout_constraintTop_toBottomOf="@id/tvDate">
-
-        <TextView
-            android:id="@+id/tvNight"
-            style="@style/TextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Night"
-            android:textAlignment="center"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switchDayNight">
 
         <TextView
             android:id="@+id/tvNightTemp"
             style="@style/BaseTextStyle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNight"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="+5 .. +8" />
 
         <ImageView
             android:id="@+id/ivNightPhenomenon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/tvNightTemp"
-            app:layout_constraintTop_toBottomOf="@id/tvNight"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toEndOf="@id/tvNightTemp"
+            app:layout_constraintTop_toTopOf="@id/tvNightTemp"
             tools:ignore="ContentDescription" />
 
         <TextView
@@ -117,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNightTemp"
+            app:layout_constraintTop_toBottomOf="@id/ivNightPhenomenon"
             tools:text="Partly cloudy. In forenoon locally, in afternoon area of precipitation is moving from west to east. Rain, on mainland locally sleet too.  Variable wind 1-7, in afternoon increasing northwest, north on islands and coast up to 10, in gusts 13 m/s. Air temperature 3..7°C." />
 
         <TextView
@@ -134,7 +140,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNightSea"
             tools:text="Wind around west 2-7 m/s. Wave height 0.3-0.8 m. In afternoon rain with sleet. Visibility good, in afternoon moderate to poor. Air temperature 4..6°C." />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

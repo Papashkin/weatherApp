@@ -20,19 +20,19 @@ class AppModule {
     @Provides
     fun weatherService() : WeatherService {
 
-        val client: OkHttpClient = OkHttpClient.Builder()
+        val okHttp = OkHttpClient.Builder()
             .addInterceptor(CurlInterceptor {curl ->
                 Log.i(tag, curl)
             })
             .build()
 
-        val service = Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
-            .client(client)
+            .client(okHttp)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        return service.create(WeatherService::class.java)
+        return retrofit.create(WeatherService::class.java)
     }
 }
 

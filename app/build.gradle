@@ -15,6 +15,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
     }
 
     buildTypes {
@@ -60,18 +66,26 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     // DI
-    implementation 'com.google.dagger:dagger:2.25.2'
-    kapt 'com.google.dagger:dagger-compiler:2.25.2'
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+
+    // Annotations
+    implementation 'javax.annotation:jsr250-api:1.0'
+    implementation 'com.google.auto.factory:auto-factory:1.0-beta2'
 
     // Reactive
     implementation "io.reactivex.rxjava3:rxjava:3.0.0-RC4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$corouteinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$corouteinesVersion"
 
     // MVP
     implementation "com.github.moxy-community:moxy:$moxyVersion"
     kapt "com.github.moxy-community:moxy-compiler:$moxyVersion"
     implementation "com.github.moxy-community:moxy-androidx:$moxyVersion"
     implementation "com.github.moxy-community:moxy-ktx:$moxyVersion"
-
 
     // API
     implementation('com.squareup.okhttp3:okhttp:4.2.2')

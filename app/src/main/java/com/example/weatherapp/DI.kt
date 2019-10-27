@@ -1,6 +1,7 @@
 package com.example.weatherapp
 
 import android.util.Log
+import com.example.weatherapp.cityCurrentForecast.CityCurrentForecastFragment
 import com.example.weatherapp.forecast.ForecastFragment
 import com.moczul.ok2curl.CurlInterceptor
 import dagger.Component
@@ -36,4 +37,5 @@ class AppModule {
 @Component(modules = [AppModule::class])
 interface WeatherAppComponent {
     fun inject(fragment: ForecastFragment)
+    fun inject(fragment: CityCurrentForecastFragment)
 }

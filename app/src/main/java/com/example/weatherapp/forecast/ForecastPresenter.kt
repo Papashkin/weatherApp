@@ -1,6 +1,7 @@
 package com.example.weatherapp.forecast
 
 import com.example.weatherapp.base.BasePresenter
+import com.google.auto.factory.AutoFactory
 import moxy.InjectViewState
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
@@ -17,10 +18,12 @@ interface ForecastView: MvpView {
     fun getNexDayForecast()
 }
 
-
+@AutoFactory
 @InjectViewState
 class ForecastPresenter @Inject constructor() : BasePresenter<ForecastView>() {
 
+    fun showData() {
 
+    }
 
 }

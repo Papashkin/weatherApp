@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
-def baseUrl = "\"https://weather.aw.ee/api/estonia/forecast\""
+def baseUrl = "\"https://weather.aw.ee/api/\""
 
 android {
     compileSdkVersion 29

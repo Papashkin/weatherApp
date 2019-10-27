@@ -12,24 +12,24 @@ class ForecastDTO(
 
 class DayDTO(
     val phenomenon: String,
-    val tempmin: Double,
-    val tempmax: Double,
+    val tempmin: Double? = null,
+    val tempmax: Double? = null,
     val text: String,
-    val sea: String,
-    val peipsi: String,
-    val places: List<PlaceDTO>,
-    val winds: List<WindDTO>
+    val sea: String? = null,
+    val peipsi: String? = null,
+    val places: List<PlaceDTO>? = null,
+    val winds: List<WindDTO>? = null
 )
 
 class NightDTO(
     val phenomenon: String,
-    val tempmin: Double,
-    val tempmax: Double,
+    val tempmin: Double? = null,
+    val tempmax: Double? = null,
     val text: String,
-    val sea: String,
-    val peipsi: String,
-    val places: List<PlaceDTO>,
-    val winds: List<WindDTO>
+    val sea: String? = null,
+    val peipsi: String? = null,
+    val places: List<PlaceDTO>? = null,
+    val winds: List<WindDTO>? = null
 )
 
 class WindDTO(

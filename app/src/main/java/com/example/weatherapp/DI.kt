@@ -6,6 +6,7 @@ import com.example.weatherapp.forecast.ForecastFragment
 import com.moczul.ok2curl.CurlInterceptor
 import dagger.Component
 import dagger.Module
+import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,6 +17,7 @@ class AppModule {
         private val tag = AppModule::class.java.simpleName
     }
 
+    @Provides
     fun weatherService() : WeatherService {
 
         val client: OkHttpClient = OkHttpClient.Builder()

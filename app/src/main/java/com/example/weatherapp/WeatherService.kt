@@ -6,9 +6,9 @@ import retrofit2.http.GET
 
 interface WeatherService {
 
-    @GET("/api/estonia/forecast")
+    @GET("/estonia/forecast")
     suspend fun getForecasts(): ForecastsModel
 
-    @GET("/api/estonia/current")
+    @GET("/estonia/current")
     suspend fun getPlaceDetails(): ObservationsModel
 }

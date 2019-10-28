@@ -11,11 +11,10 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
-import com.example.weatherapp.forecast.models.ForecastDTO
-import com.example.weatherapp.forecast.models.ForecastsModel
-import com.example.weatherapp.forecast.models.PlaceDTO
+import com.example.weatherapp.forecast.models.*
 import kotlinx.android.synthetic.main.card_forecast.view.*
 import kotlinx.android.synthetic.main.card_forecast_place.view.*
+import kotlinx.android.synthetic.main.card_forecast_wind.view.*
 import kotlin.math.roundToInt
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastViewHolder>() {
@@ -56,84 +55,82 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(item: ForecastDTO) {
         itemView.tvDate.text = item.date
-        with(item.day) {
-            itemView.tvDayDesc.text = this.text
-            if (this.sea.isNullOrBlank()) {
-                itemView.llDaySea.visibility = View.GONE
-            } else {
-                itemView.llDaySea.visibility = View.VISIBLE
-                itemView.tvDaySea.text = this.sea
-            }
-            if (this.peipsi.isNullOrBlank()) {
-                itemView.llDayPeipsi.visibility = View.GONE
-            } else {
-                itemView.llDayPeipsi.visibility = View.VISIBLE
-                itemView.tvDayPeipsi.text = this.peipsi
-            }
-            if (this.places.isNullOrEmpty()) {
-                itemView.llDayPlaces.visibility = View.GONE
-            } else {
-                itemView.llDayPlaces.visibility = View.VISIBLE
-                inflateDayPlaceView(this.places)
-//                itemView.tvDayPeipsi.text = this.peipsi
-            }
-            if (this.winds.isNullOrEmpty()) {
-                itemView.llDayWinds.visibility = View.GONE
-            } else {
-                itemView.llDayWinds.visibility = View.VISIBLE
-//                itemView.tvDayPeipsi.text = this.peipsi
-            }
-            itemView.tvDayTemp.text =
-                setTempMinMax(this.tempmin.roundToInt(), this.tempmax.roundToInt())
-            itemView.ivDayPhenomenon.setImageDrawable(
-                ContextCompat.getDrawable(itemView.context, this.phenomenon.drawableId)
-            )
-            setMovementMethodAndTouchListener(itemView.tvDaySea)
-            setMovementMethodAndTouchListener(itemView.tvDayPeipsi)
+        setNewData(item.day)
+        setMovementMethodAndTouchListener(itemView.tvSea)
+        setMovementMethodAndTouchListener(itemView.tvPeipsi)
+
+        itemView.btnShowNightWeather.setOnClickListener {
+            setNewData(item.night)
+            showNightAndHideDay()
         }
-        with(item.night) {
-            itemView.tvNightDesc.text = this.text
-            if (this.sea.isNullOrBlank()) {
-                itemView.llNightSea.visibility = View.GONE
-            } else {
-                itemView.llNightSea.visibility = View.VISIBLE
-                itemView.tvNightSea.text = this.sea
-            }
-            if (this.peipsi.isNullOrBlank()) {
-                itemView.llNightPeipsi.visibility = View.GONE
-            } else {
-                itemView.llNightPeipsi.visibility = View.VISIBLE
-                itemView.tvNightPeipsi.text = this.peipsi
-            }
-            if (this.places.isNullOrEmpty()) {
-                itemView.llNightPlaces.visibility = View.GONE
-            } else {
-                itemView.llNightPlaces.visibility = View.VISIBLE
-                inflateNightPlaceView(this.places)
-//                itemView.tvDayPeipsi.text = this.peipsi
-            }
-            if (this.winds.isNullOrEmpty()) {
-                itemView.llNightWinds.visibility = View.GONE
-            } else {
-                itemView.llNightWinds.visibility = View.VISIBLE
-//                itemView.tvDayPeipsi.text = this.peipsi
-            }
-            itemView.tvNightTemp.text =
-                setTempMinMax(this.tempmin.roundToInt(), this.tempmax.roundToInt())
-            itemView.ivNightPhenomenon.setImageDrawable(
-                ContextCompat.getDrawable(itemView.context, this.phenomenon.drawableId)
-            )
-            setMovementMethodAndTouchListener(itemView.tvNightSea)
-            setMovementMethodAndTouchListener(itemView.tvNightPeipsi)
+        itemView.btnShowDayWeather.setOnClickListener {
+            setNewData(item.day)
+            showDayAndHideNight()
         }
-        itemView.btnShowNightWeather.setOnClickListener { showNightAndHideDay() }
-        itemView.btnShowDayWeather.setOnClickListener { showDayAndHideNight() }
     }
 
-    private fun inflateDayPlaceView(places: List<PlaceDTO>) {
+    private fun setNewData(dayNight: DayNightDTO) {
+        setForecastData(dayNight)
+        itemView.invalidate()
+    }
+
+    private fun setForecastData(data: DayNightDTO) {
+        itemView.tvDesc.text = data.text
+        if (data.sea.isNullOrBlank()) {
+            itemView.llSea.visibility = View.GONE
+        } else {
+            itemView.llSea.visibility = View.VISIBLE
+            itemView.tvSea.text = data.sea
+        }
+        if (data.peipsi.isNullOrBlank()) {
+            itemView.llPeipsi.visibility = View.GONE
+        } else {
+            itemView.llPeipsi.visibility = View.VISIBLE
+            itemView.tvPeipsi.text = data.peipsi
+        }
+        if (data.places.isNullOrEmpty()) {
+            hidePlaces()
+        } else {
+            showPlaces()
+            inflatePlaceView(data.places)
+        }
+        if (data.winds.isNullOrEmpty()) {
+            hideWinds()
+        } else {
+            showWinds()
+            inflateWindView(data.winds)
+        }
+        itemView.tvForecastTemp.text =
+            setTempMinMax(data.tempmin.roundToInt(), data.tempmax.roundToInt())
+        itemView.ivForecastPhenomenon.setImageDrawable(
+            ContextCompat.getDrawable(itemView.context, data.phenomenon.drawableId)
+        )
+    }
+
+    private fun inflateWindView(winds: List<WindDTO>) {
+        itemView.llWinds.removeAllViews()
+        winds.forEach { wind ->
+            val view = LayoutInflater.from(itemView.context)
+                .inflate(R.layout.card_forecast_wind, itemView.llWinds, false)
+            view.layoutParams = ViewGroup.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            view.tvWind.text = wind.name
+            view.tvSpeed.text = setSpeedMinMax(wind.speedmin.roundToInt(), wind.speedmin.roundToInt())
+            view.ivDirection.setImageDrawable(
+                ContextCompat.getDrawable(itemView.context, wind.direction.drawableId)
+            )
+            itemView.llWinds.addView(view)
+        }
+        itemView.llWinds.invalidate()
+    }
+
+    private fun inflatePlaceView(places: List<PlaceDTO>) {
+        itemView.llPlaces.removeAllViews()
         places.forEach { place ->
             val view = LayoutInflater.from(itemView.context)
-                .inflate(R.layout.card_forecast_place, itemView.llDayPlaces, false)
+                .inflate(R.layout.card_forecast_place, itemView.llPlaces, false)
             view.layoutParams = ViewGroup.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -143,29 +140,9 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             view.ivPhenomenon.setImageDrawable(
                 ContextCompat.getDrawable(itemView.context, place.phenomenon.drawableId)
             )
-            view.invalidate()
-            itemView.llDayPlaces.addView(view)
+            itemView.llPlaces.addView(view)
         }
-        itemView.llDayPlaces.invalidate()
-    }
-
-    private fun inflateNightPlaceView(places: List<PlaceDTO>) {
-        places.forEach { place ->
-            val view = LayoutInflater.from(itemView.context)
-                .inflate(R.layout.card_forecast_place, itemView.llNightPlaces, false)
-            view.layoutParams = ViewGroup.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            view.tvPlace.text = place.name
-            view.tvTemp.text = setTempMinMax(place.tempmin.roundToInt(), place.tempmax.roundToInt())
-            view.ivPhenomenon.setImageDrawable(
-                ContextCompat.getDrawable(itemView.context, place.phenomenon.drawableId)
-            )
-            view.invalidate()
-            itemView.llNightPlaces.addView(view)
-        }
-        itemView.llNightPlaces.invalidate()
+        itemView.llPlaces.invalidate()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -181,15 +158,43 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         return "$correctTempMin .. $correctTempMax"
     }
 
+    private fun setSpeedMinMax(speedMin: Int, speedMax: Int): String {
+        return "$speedMin - $speedMax m/s"
+    }
+
     private fun showDayAndHideNight() {
-        itemView.clDay.visibility = View.VISIBLE
-        itemView.clNight.visibility = View.GONE
+        itemView.btnShowNightWeather.visibility = View.VISIBLE
+        itemView.btnShowDayWeather.visibility = View.GONE
         itemView.invalidate()
     }
 
     private fun showNightAndHideDay() {
-        itemView.clDay.visibility = View.GONE
-        itemView.clNight.visibility = View.VISIBLE
+        itemView.btnShowNightWeather.visibility = View.GONE
+        itemView.btnShowDayWeather.visibility = View.VISIBLE
         itemView.invalidate()
+    }
+
+    private fun showPlaces() {
+        itemView.tvPlacesTitle.visibility = View.VISIBLE
+        itemView.dividerPlaces.visibility = View.VISIBLE
+        itemView.llPlaces.visibility = View.VISIBLE
+    }
+
+    private fun hidePlaces() {
+        itemView.tvPlacesTitle.visibility = View.GONE
+        itemView.dividerPlaces.visibility = View.GONE
+        itemView.llPlaces.visibility = View.GONE
+    }
+
+    private fun showWinds() {
+        itemView.tvWindsTitle.visibility = View.VISIBLE
+        itemView.dividerWinds.visibility = View.VISIBLE
+        itemView.llWinds.visibility = View.VISIBLE
+    }
+
+    private fun hideWinds() {
+        itemView.tvWindsTitle.visibility = View.GONE
+        itemView.dividerWinds.visibility = View.GONE
+        itemView.llWinds.visibility = View.GONE
     }
 }

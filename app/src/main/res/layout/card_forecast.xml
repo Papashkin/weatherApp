@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/clForecast"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
@@ -23,7 +22,7 @@
         tools:text="20/07/2019" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clDay"
+        android:id="@+id/clForecast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
@@ -32,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvDate">
 
         <TextView
-            android:id="@+id/tvDayTitle"
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
@@ -57,187 +56,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivDayPhenomenon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="6dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDayTitle"
-            tools:ignore="ContentDescription" />
-
-        <TextView
-            android:id="@+id/tvDayTemp"
-            style="@style/BaseTextStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-            app:layout_constraintBottom_toTopOf="@id/barrierDay"
-            app:layout_constraintEnd_toEndOf="@id/ivDayPhenomenon"
-            app:layout_constraintStart_toStartOf="@id/ivDayPhenomenon"
-            app:layout_constraintTop_toBottomOf="@id/ivDayPhenomenon"
-            tools:text="+5 .. +8" />
-
-        <TextView
-            android:id="@+id/tvDayDesc"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            app:layout_constraintBottom_toTopOf="@id/barrierDay"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivDayPhenomenon"
-            app:layout_constraintTop_toTopOf="@id/ivDayPhenomenon"
-            tools:text="Partly cloudy. In forenoon locally, in afternoon area of precipitation is moving from west to east. Rain, on mainland locally sleet too.  Variable wind 1-7, in afternoon increasing northwest, north on islands and coast up to 10, in gusts 13 m/s. Air temperature 3..7°C." />
-
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrierDay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:barrierDirection="top" />
-
-        <View
-            android:id="@+id/vDayDescDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="4dp"
-            android:background="#acacac"
-            app:layout_constraintTop_toBottomOf="@id/barrierDay" />
-
-        <LinearLayout
-            android:id="@+id/llDaySea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/vDayDescDivider">
-
-            <TextView
-                android:id="@+id/tvDaySeaTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Sea"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
-            <TextView
-                android:id="@+id/tvDaySea"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:maxLines="7"
-                android:scrollbars="vertical"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
-            <View
-                android:id="@+id/vDaySeaDivider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="4dp"
-                android:background="#acacac" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llDayPeipsi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/llDaySea">
-
-            <TextView
-                android:id="@+id/tvDayPeipsiTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Peipsi"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
-            <TextView
-                android:id="@+id/tvDayPeipsi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:maxLines="7"
-                android:scrollbars="vertical"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                tools:text="Wind around west 2-7 m/s. Wave height 0.3-0.8 m. In afternoon rain with sleet. Visibility good, in afternoon moderate to poor. Air temperature 4..6°C." />
-
-            <View
-                android:id="@+id/vDayPeipsiDivider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="4dp"
-                android:background="#acacac" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvDayPlacesTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Places"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            app:layout_constraintTop_toBottomOf="@id/llDayPeipsi" />
-
-        <LinearLayout
-            android:id="@+id/llDayPlaces"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:scrollbars="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tvDayPlacesTitle" />
-
-        <View
-            android:id="@+id/dividerDayWind"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="4dp"
-            android:background="#acacac"
-            app:layout_constraintTop_toBottomOf="@id/llDayPlaces" />
-
-        <TextView
-            android:id="@+id/tvDayWindsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Winds"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            app:layout_constraintTop_toBottomOf="@id/dividerDayWind" />
-
-        <LinearLayout
-            android:id="@+id/llDayWinds"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:scrollbars="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tvDayWindsTitle" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clNight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDate">
-
-        <TextView
-            android:id="@+id/tvNightTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="Night"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <Button
             android:id="@+id/btnShowDayWeather"
             style="@style/TextStyle"
@@ -250,68 +68,68 @@
             android:text="Show day forecast"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ivNightPhenomenon"
+            android:id="@+id/ivForecastPhenomenon"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="6dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNightTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/tvNightTemp"
+            android:id="@+id/tvForecastTemp"
             style="@style/BaseTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-            app:layout_constraintBottom_toTopOf="@id/barrierNight"
-            app:layout_constraintEnd_toEndOf="@id/ivNightPhenomenon"
-            app:layout_constraintStart_toStartOf="@id/ivNightPhenomenon"
-            app:layout_constraintTop_toBottomOf="@id/ivNightPhenomenon"
+            app:layout_constraintBottom_toTopOf="@id/barrierForecast"
+            app:layout_constraintEnd_toEndOf="@id/ivForecastPhenomenon"
+            app:layout_constraintStart_toStartOf="@id/ivForecastPhenomenon"
+            app:layout_constraintTop_toBottomOf="@id/ivForecastPhenomenon"
             tools:text="+5 .. +8" />
 
         <TextView
-            android:id="@+id/tvNightDesc"
+            android:id="@+id/tvDesc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_margin="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            app:layout_constraintBottom_toTopOf="@id/barrierNight"
+            app:layout_constraintBottom_toTopOf="@id/barrierForecast"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivNightPhenomenon"
-            app:layout_constraintTop_toTopOf="@id/ivNightPhenomenon"
+            app:layout_constraintStart_toEndOf="@id/ivForecastPhenomenon"
+            app:layout_constraintTop_toTopOf="@id/ivForecastPhenomenon"
             tools:text="Partly cloudy. In forenoon locally, in afternoon area of precipitation is moving from west to east. Rain, on mainland locally sleet too.  Variable wind 1-7, in afternoon increasing northwest, north on islands and coast up to 10, in gusts 13 m/s. Air temperature 3..7°C." />
 
         <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrierNight"
+            android:id="@+id/barrierForecast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:barrierDirection="top" />
 
         <View
-            android:id="@+id/vNightDescDivider"
+            android:id="@+id/vDescDivider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="4dp"
             android:background="#acacac"
-            app:layout_constraintTop_toBottomOf="@id/barrierNight" />
+            app:layout_constraintTop_toBottomOf="@id/barrierForecast" />
 
         <LinearLayout
-            android:id="@+id/llNightSea"
+            android:id="@+id/llSea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/vNightDescDivider">
+            app:layout_constraintTop_toBottomOf="@id/vDescDivider">
 
             <TextView
-                android:id="@+id/tvNightSeaTitle"
+                android:id="@+id/tvSeaTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -319,7 +137,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
             <TextView
-                android:id="@+id/tvNightSea"
+                android:id="@+id/tvSea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -328,7 +146,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
             <View
-                android:id="@+id/vSeaNightDivider"
+                android:id="@+id/vSeaDivider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="4dp"
@@ -337,14 +155,14 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/llNightPeipsi"
+            android:id="@+id/llPeipsi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/llNightSea">
+            app:layout_constraintTop_toBottomOf="@id/llSea">
 
             <TextView
-                android:id="@+id/tvNightPeipsiTitle"
+                android:id="@+id/tvPeipsiTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -352,7 +170,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
             <TextView
-                android:id="@+id/tvNightPeipsi"
+                android:id="@+id/tvPeipsi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
@@ -362,7 +180,7 @@
                 tools:text="Wind around west 2-7 m/s. Wave height 0.3-0.8 m. In afternoon rain with sleet. Visibility good, in afternoon moderate to poor. Air temperature 4..6°C." />
 
             <View
-                android:id="@+id/vNightPeipsiDivider"
+                android:id="@+id/vPeipsiDivider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="4dp"
@@ -371,46 +189,55 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvNightPlacesTitle"
+            android:id="@+id/tvPlacesTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Places"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            app:layout_constraintTop_toBottomOf="@id/llNightPeipsi" />
+            app:layout_constraintTop_toBottomOf="@id/llPeipsi" />
 
         <LinearLayout
-            android:id="@+id/llNightPlaces"
+            android:id="@+id/llPlaces"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:scrollbars="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tvNightPlacesTitle" />
+            app:layout_constraintTop_toBottomOf="@id/tvPlacesTitle" />
 
         <View
-            android:id="@+id/dividerNightPlaces"
+            android:id="@+id/dividerPlaces"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="4dp"
             android:background="#acacac"
-            app:layout_constraintTop_toBottomOf="@id/llNightPlaces" />
+            app:layout_constraintTop_toBottomOf="@id/llPlaces" />
 
         <TextView
-            android:id="@+id/tvNightWindsTitle"
+            android:id="@+id/tvWindsTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="Winds"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            app:layout_constraintTop_toBottomOf="@id/dividerNightPlaces" />
-
+            app:layout_constraintTop_toBottomOf="@id/dividerPlaces" />
 
         <LinearLayout
-            android:id="@+id/llNightWinds"
+            android:id="@+id/llWinds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tvNightWindsTitle" />
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tvWindsTitle" />
+
+        <View
+            android:id="@+id/dividerWinds"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="#acacac"
+            app:layout_constraintTop_toBottomOf="@id/llWinds"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

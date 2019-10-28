@@ -1,5 +1,7 @@
 package com.example.weatherapp.forecast.models
 
+import androidx.annotation.DrawableRes
+import com.example.weatherapp.R
 import com.google.gson.annotations.SerializedName
 
 class ForecastsModel(
@@ -14,8 +16,8 @@ class ForecastDTO(
 
 class DayDTO(
     val phenomenon: Phenomenon,
-    val tempmin: Double? = null,
-    val tempmax: Double? = null,
+    val tempmin: Double = 0.0,
+    val tempmax: Double = 0.0,
     val text: String,
     val sea: String? = null,
     val peipsi: String? = null,
@@ -25,8 +27,8 @@ class DayDTO(
 
 class NightDTO(
     val phenomenon: Phenomenon,
-    val tempmin: Double? = null,
-    val tempmax: Double? = null,
+    val tempmin: Double = 0.0,
+    val tempmax: Double = 0.0,
     val text: String,
     val sea: String? = null,
     val peipsi: String? = null,
@@ -51,59 +53,59 @@ class PlaceDTO(
 /**
  * Phenomenons:
  */
-enum class Phenomenon {
+enum class Phenomenon(@DrawableRes val drawableId: Int) {
     @SerializedName("Clear")
-    clear,
+    clear(R.drawable.phenomenon_sun),
     @SerializedName("Few clouds")
-    fewClouds,
+    fewClouds(R.drawable.phenomenon_cloud),
     @SerializedName("Variable clouds")
-    variableClouds,
+    variableClouds(R.drawable.phenomenon_cloud),
     @SerializedName("Cloudy with clear spells")
-    cloudyWithClearSpells,
+    cloudyWithClearSpells(R.drawable.phenomenon_cloud_with_spells),
     @SerializedName("Cloudy")
-    cloudy,
+    cloudy(R.drawable.phenomenon_cloud),
     @SerializedName("Light snow shower")
-    lightSnowShower,
+    lightSnowShower(R.drawable.phenomenon_snow_shower),
     @SerializedName("Moderate snow shower")
-    moderateSnowShower,
+    moderateSnowShower(R.drawable.phenomenon_snow_shower),
     @SerializedName("Heavy snow shower")
-    heavySnowShower,
+    heavySnowShower(R.drawable.phenomenon_snow_shower),
     @SerializedName("Light shower")
-    lightShower,
+    lightShower(R.drawable.phenomenon_shower),
     @SerializedName("Moderate shower")
-    moderateShower,
+    moderateShower(R.drawable.phenomenon_shower),
     @SerializedName("Heavy shower")
-    heavyShower,
+    heavyShower(R.drawable.phenomenon_shower),
     @SerializedName("Light rain")
-    lightRain,
+    lightRain(R.drawable.phenomenon_rain),
     @SerializedName("Moderate rain")
-    moderateRain,
+    moderateRain(R.drawable.phenomenon_rain),
     @SerializedName("Heavy rain")
-    heavyRain,
+    heavyRain(R.drawable.phenomenon_heavy_rain),
     @SerializedName("Risk of glaze")
-    riskOfGlaze,
+    riskOfGlaze(R.drawable.phenomenon_glaze),
     @SerializedName("Light sleet")
-    lightSleet,
+    lightSleet(R.drawable.phenomenon_sleet),
     @SerializedName("Moderate sleet")
-    moderateSleet,
+    moderateSleet(R.drawable.phenomenon_sleet),
     @SerializedName("Light snowfall")
-    lightSnowfall,
+    lightSnowfall(R.drawable.phenomenon_snow),
     @SerializedName("Moderate snowfall")
-    moderateSnowfall,
+    moderateSnowfall(R.drawable.phenomenon_snow),
     @SerializedName("Heavy snowfall")
-    heavySnowfall,
+    heavySnowfall(R.drawable.phenomenon_heavy_snow),
     @SerializedName("Snowstorm")
-    snowstorm,
+    snowstorm(R.drawable.phenomenon_heavy_snow),
     @SerializedName("Clear")
-    driftingSnow,
+    driftingSnow(R.drawable.phenomenon_snow),
     @SerializedName("Hail")
-    hail,
+    hail(R.drawable.phenomenon_hail),
     @SerializedName("Mist")
-    mist,
+    mist(R.drawable.phenomenon_fog),
     @SerializedName("Fog")
-    fog,
+    fog(R.drawable.phenomenon_fog),
     @SerializedName("Thunder")
-    thunder,
+    thunder(R.drawable.phenomenon_thunder),
     @SerializedName("Thunderstorm")
-    thunderstorm
+    thunderstorm(R.drawable.phenomenon_thunder)
 }

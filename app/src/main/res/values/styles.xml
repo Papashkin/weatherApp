@@ -24,4 +24,9 @@
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
+    <style name="forecastPlaceStyle" parent="BaseTextStyle">
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Menu</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
 </resources>

@@ -97,14 +97,8 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             setMovementMethodAndTouchListener(itemView.tvNightSea)
             setMovementMethodAndTouchListener(itemView.tvNightPeipsi)
         }
-        itemView.btnShowNightWeather.setOnClickListener {
-            showNightAndHideDay()
-            itemView.invalidate()
-        }
-        itemView.btnShowDayWeather.setOnClickListener {
-            showDayAndHideNight()
-            itemView.invalidate()
-        }
+        itemView.btnShowNightWeather.setOnClickListener { showNightAndHideDay() }
+        itemView.btnShowDayWeather.setOnClickListener { showDayAndHideNight() }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -123,10 +117,12 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private fun showDayAndHideNight() {
         itemView.clDay.visibility = View.VISIBLE
         itemView.clNight.visibility = View.GONE
+        itemView.invalidate()
     }
 
     private fun showNightAndHideDay() {
         itemView.clDay.visibility = View.GONE
         itemView.clNight.visibility = View.VISIBLE
+        itemView.invalidate()
     }
 }

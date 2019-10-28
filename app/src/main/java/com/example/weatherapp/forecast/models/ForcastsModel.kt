@@ -10,22 +10,11 @@ class ForecastsModel(
 
 class ForecastDTO(
     val date: String,
-    val day: DayDTO,
-    val night: NightDTO
+    val day: DayNightDTO,
+    val night: DayNightDTO
 )
 
-class DayDTO(
-    val phenomenon: Phenomenon,
-    val tempmin: Double = 0.0,
-    val tempmax: Double = 0.0,
-    val text: String,
-    val sea: String? = null,
-    val peipsi: String? = null,
-    val places: List<PlaceDTO>? = null,
-    val winds: List<WindDTO>? = null
-)
-
-class NightDTO(
+class DayNightDTO(
     val phenomenon: Phenomenon,
     val tempmin: Double = 0.0,
     val tempmax: Double = 0.0,
@@ -38,14 +27,14 @@ class NightDTO(
 
 class WindDTO(
     val name: String,
-    val direction: String,
+    val direction: WindDirection,
     val speedmin: Double,
     val speedmax: Double
 )
 
 class PlaceDTO(
     val name: String,
-    val phenomenon: String,
+    val phenomenon: Phenomenon,
     val tempmin: Double,
     val tempmax: Double
 )
@@ -108,4 +97,23 @@ enum class Phenomenon(@DrawableRes val drawableId: Int) {
     thunder(R.drawable.phenomenon_thunder),
     @SerializedName("Thunderstorm")
     thunderstorm(R.drawable.phenomenon_thunder)
+}
+
+enum class WindDirection(@DrawableRes val drawableId: Int) {
+    @SerializedName("North wind")
+    north(R.drawable.wind_north),
+    @SerializedName("Northwest wind")
+    northwest(R.drawable.wind_northwest),
+    @SerializedName("West wind")
+    west(R.drawable.wind_west),
+    @SerializedName("Southwest wind")
+    southwest(R.drawable.wind_southwest),
+    @SerializedName("South wind")
+    south(R.drawable.wind_south),
+    @SerializedName("Southeast wind")
+    southeast(R.drawable.wind_southeast),
+    @SerializedName("East wind")
+    east(R.drawable.wind_east),
+    @SerializedName("Northeast wind")
+    northeast(R.drawable.wind_northeast)
 }

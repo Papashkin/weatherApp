@@ -99,7 +99,9 @@
             android:id="@+id/tvDesc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             app:layout_constraintBottom_toTopOf="@id/barrierForecast"
             app:layout_constraintEnd_toEndOf="parent"
@@ -230,12 +232,9 @@
             android:scrollbars="vertical"
             app:layout_constraintTop_toBottomOf="@id/tvWindsTitle" />
 
-        <View
-            android:id="@+id/dividerWinds"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="4dp"
-            android:background="#acacac"
+            android:layout_height="10dp"
             app:layout_constraintTop_toBottomOf="@id/llWinds"
             app:layout_constraintBottom_toBottomOf="parent"/>
 

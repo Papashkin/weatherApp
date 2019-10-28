@@ -88,18 +88,8 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             itemView.llPeipsi.visibility = View.VISIBLE
             itemView.tvPeipsi.text = data.peipsi
         }
-        if (data.places.isNullOrEmpty()) {
-            hidePlaces()
-        } else {
-            showPlaces()
-            inflatePlaceView(data.places)
-        }
-        if (data.winds.isNullOrEmpty()) {
-            hideWinds()
-        } else {
-            showWinds()
-            inflateWindView(data.winds)
-        }
+        if (data.places.isNullOrEmpty()) hidePlaces() else showPlaces(data.places)
+        if (data.winds.isNullOrEmpty()) hideWinds() else showWinds(data.winds)
         itemView.tvForecastTemp.text =
             setTempMinMax(data.tempmin.roundToInt(), data.tempmax.roundToInt())
         itemView.ivForecastPhenomenon.setImageDrawable(
@@ -117,13 +107,13 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 LinearLayout.LayoutParams.WRAP_CONTENT
             )
             view.tvWind.text = wind.name
-            view.tvSpeed.text = setSpeedMinMax(wind.speedmin.roundToInt(), wind.speedmin.roundToInt())
+            view.tvSpeed.text =
+                setSpeedMinMax(wind.speedmin.roundToInt(), wind.speedmax.roundToInt())
             view.ivDirection.setImageDrawable(
                 ContextCompat.getDrawable(itemView.context, wind.direction.drawableId)
             )
             itemView.llWinds.addView(view)
         }
-        itemView.llWinds.invalidate()
     }
 
     private fun inflatePlaceView(places: List<PlaceDTO>) {
@@ -142,7 +132,6 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             )
             itemView.llPlaces.addView(view)
         }
-        itemView.llPlaces.invalidate()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -174,10 +163,11 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.invalidate()
     }
 
-    private fun showPlaces() {
+    private fun showPlaces(places: List<PlaceDTO>) {
         itemView.tvPlacesTitle.visibility = View.VISIBLE
         itemView.dividerPlaces.visibility = View.VISIBLE
         itemView.llPlaces.visibility = View.VISIBLE
+        inflatePlaceView(places)
     }
 
     private fun hidePlaces() {
@@ -186,15 +176,14 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         itemView.llPlaces.visibility = View.GONE
     }
 
-    private fun showWinds() {
+    private fun showWinds(winds: List<WindDTO>) {
         itemView.tvWindsTitle.visibility = View.VISIBLE
-        itemView.dividerWinds.visibility = View.VISIBLE
         itemView.llWinds.visibility = View.VISIBLE
+        inflateWindView(winds)
     }
 
     private fun hideWinds() {
         itemView.tvWindsTitle.visibility = View.GONE
-        itemView.dividerWinds.visibility = View.GONE
         itemView.llWinds.visibility = View.GONE
     }
 }

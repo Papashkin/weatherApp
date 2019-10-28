@@ -26,7 +26,7 @@
 
     <style name="forecastPlaceStyle" parent="BaseTextStyle">
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Menu</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

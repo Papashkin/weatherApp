@@ -6,13 +6,16 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.forecast.models.ForecastDTO
 import com.example.weatherapp.forecast.models.ForecastsModel
+import com.example.weatherapp.forecast.models.PlaceDTO
 import kotlinx.android.synthetic.main.card_forecast.view.*
+import kotlinx.android.synthetic.main.card_forecast_place.view.*
 import kotlin.math.roundToInt
 
 class ForecastAdapter : RecyclerView.Adapter<ForecastViewHolder>() {
@@ -67,6 +70,19 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 itemView.llDayPeipsi.visibility = View.VISIBLE
                 itemView.tvDayPeipsi.text = this.peipsi
             }
+            if (this.places.isNullOrEmpty()) {
+                itemView.llDayPlaces.visibility = View.GONE
+            } else {
+                itemView.llDayPlaces.visibility = View.VISIBLE
+                inflateDayPlaceView(this.places)
+//                itemView.tvDayPeipsi.text = this.peipsi
+            }
+            if (this.winds.isNullOrEmpty()) {
+                itemView.llDayWinds.visibility = View.GONE
+            } else {
+                itemView.llDayWinds.visibility = View.VISIBLE
+//                itemView.tvDayPeipsi.text = this.peipsi
+            }
             itemView.tvDayTemp.text =
                 setTempMinMax(this.tempmin.roundToInt(), this.tempmax.roundToInt())
             itemView.ivDayPhenomenon.setImageDrawable(
@@ -89,6 +105,19 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 itemView.llNightPeipsi.visibility = View.VISIBLE
                 itemView.tvNightPeipsi.text = this.peipsi
             }
+            if (this.places.isNullOrEmpty()) {
+                itemView.llNightPlaces.visibility = View.GONE
+            } else {
+                itemView.llNightPlaces.visibility = View.VISIBLE
+                inflateNightPlaceView(this.places)
+//                itemView.tvDayPeipsi.text = this.peipsi
+            }
+            if (this.winds.isNullOrEmpty()) {
+                itemView.llNightWinds.visibility = View.GONE
+            } else {
+                itemView.llNightWinds.visibility = View.VISIBLE
+//                itemView.tvDayPeipsi.text = this.peipsi
+            }
             itemView.tvNightTemp.text =
                 setTempMinMax(this.tempmin.roundToInt(), this.tempmax.roundToInt())
             itemView.ivNightPhenomenon.setImageDrawable(
@@ -99,6 +128,44 @@ class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
         itemView.btnShowNightWeather.setOnClickListener { showNightAndHideDay() }
         itemView.btnShowDayWeather.setOnClickListener { showDayAndHideNight() }
+    }
+
+    private fun inflateDayPlaceView(places: List<PlaceDTO>) {
+        places.forEach { place ->
+            val view = LayoutInflater.from(itemView.context)
+                .inflate(R.layout.card_forecast_place, itemView.llDayPlaces, false)
+            view.layoutParams = ViewGroup.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            view.tvPlace.text = place.name
+            view.tvTemp.text = setTempMinMax(place.tempmin.roundToInt(), place.tempmax.roundToInt())
+            view.ivPhenomenon.setImageDrawable(
+                ContextCompat.getDrawable(itemView.context, place.phenomenon.drawableId)
+            )
+            view.invalidate()
+            itemView.llDayPlaces.addView(view)
+        }
+        itemView.llDayPlaces.invalidate()
+    }
+
+    private fun inflateNightPlaceView(places: List<PlaceDTO>) {
+        places.forEach { place ->
+            val view = LayoutInflater.from(itemView.context)
+                .inflate(R.layout.card_forecast_place, itemView.llNightPlaces, false)
+            view.layoutParams = ViewGroup.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            view.tvPlace.text = place.name
+            view.tvTemp.text = setTempMinMax(place.tempmin.roundToInt(), place.tempmax.roundToInt())
+            view.ivPhenomenon.setImageDrawable(
+                ContextCompat.getDrawable(itemView.context, place.phenomenon.drawableId)
+            )
+            view.invalidate()
+            itemView.llNightPlaces.addView(view)
+        }
+        itemView.llNightPlaces.invalidate()
     }
 
     @SuppressLint("ClickableViewAccessibility")

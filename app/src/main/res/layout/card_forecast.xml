@@ -2,8 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clForecast"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="6dp"
     android:background="@drawable/shape_forecast_card"
     android:elevation="2dp"
@@ -34,8 +35,8 @@
             android:id="@+id/tvDayTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Day"
             android:layout_margin="4dp"
+            android:text="Day"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintStart_toStartOf="parent"
@@ -172,46 +173,47 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvDayPlacesTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Places"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintTop_toBottomOf="@id/llDayPeipsi" />
+
         <LinearLayout
             android:id="@+id/llDayPlaces"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/llDayPeipsi">
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tvDayPlacesTitle" />
 
-            <TextView
-                android:id="@+id/tvDayPlacesTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Places"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+        <View
+            android:id="@+id/dividerDayWind"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="#acacac"
+            app:layout_constraintTop_toBottomOf="@id/llDayPlaces" />
 
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/tvDayWindsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Winds"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintTop_toBottomOf="@id/dividerDayWind" />
 
         <LinearLayout
             android:id="@+id/llDayWinds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/llDayPlaces">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="4dp"
-                android:background="#acacac" />
-
-            <TextView
-                android:id="@+id/tvDayWindsTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Winds"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
-        </LinearLayout>
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tvDayWindsTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -229,8 +231,8 @@
             android:id="@+id/tvNightTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Night"
             android:layout_margin="4dp"
+            android:text="Night"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintStart_toStartOf="parent"
@@ -368,46 +370,47 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvNightPlacesTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Places"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintTop_toBottomOf="@id/llNightPeipsi" />
 
         <LinearLayout
             android:id="@+id/llNightPlaces"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/llNightPeipsi">
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@id/tvNightPlacesTitle" />
 
-            <TextView
-                android:id="@+id/tvNightPlacesTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Places"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+        <View
+            android:id="@+id/dividerNightPlaces"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="#acacac"
+            app:layout_constraintTop_toBottomOf="@id/llNightPlaces" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvNightWindsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Winds"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintTop_toBottomOf="@id/dividerNightPlaces" />
+
 
         <LinearLayout
             android:id="@+id/llNightWinds"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/llNightPlaces">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="4dp"
-                android:background="#acacac" />
-
-            <TextView
-                android:id="@+id/tvNightWindsTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Winds"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/tvNightWindsTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

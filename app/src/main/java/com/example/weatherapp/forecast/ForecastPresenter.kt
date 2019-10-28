@@ -20,6 +20,9 @@ interface ForecastView: MvpView {
 
     @StateStrategyType(SkipStrategy::class)
     fun showError()
+
+    @StateStrategyType(SkipStrategy::class)
+    fun toCityDetails(name: String)
 }
 
 @AutoFactory
@@ -38,4 +41,7 @@ class ForecastPresenter @Inject constructor(
         }
     }
 
+    fun onPlaceClick(name: String) {
+        viewState.toCityDetails(name)
+    }
 }

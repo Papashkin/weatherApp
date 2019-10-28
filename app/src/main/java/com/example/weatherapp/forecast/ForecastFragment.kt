@@ -2,6 +2,7 @@ package com.example.weatherapp.forecast
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.example.weatherapp.R
 import com.example.weatherapp.base.BaseFragment
 import com.example.weatherapp.di
@@ -17,8 +18,9 @@ class ForecastFragment :
     @Inject lateinit var factory: ForecastPresenterFactory
 
     private val presenter by moxyPresenter { factory.create() }
-    private val adapter: ForecastAdapter =
-        ForecastAdapter()
+    private val adapter: ForecastAdapter = ForecastAdapter {
+        presenter.onPlaceClick(it)
+    }
 
     init {
         di.inject(this)
@@ -36,5 +38,10 @@ class ForecastFragment :
 
     override fun showError() {
         showToast("No data to show loading from internet")
+    }
+
+    override fun toCityDetails(name: String) {
+        findNavController().navigate(
+            ForecastFragmentDirections.actionForecastFragmentToCityCurrentForecastFragment(name))
     }
 }

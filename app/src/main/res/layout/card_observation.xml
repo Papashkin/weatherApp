@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/shape_forecast_card"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvStationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            tools:text="Test station"
+            android:textAlignment="center"
+            style="@style/BaseTextStyle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/llLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/tvStationName" >
+
+            <TextView
+                android:id="@+id/tvLocationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location:"/>
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="(56.234; 60.3429)"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llPhenomenon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llLocation" >
+
+            <TextView
+                android:id="@+id/tvPhenomenonTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phenomenon:"/>
+
+            <TextView
+                android:id="@+id/tvPhenomenon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="Cloud"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llVisibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llPhenomenon" >
+
+            <TextView
+                android:id="@+id/tvVisibilityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Visibility:"/>
+
+            <TextView
+                android:id="@+id/tvVisibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="28 m"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llPrecipitations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llVisibility" >
+
+            <TextView
+                android:id="@+id/tvPrecipitationsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precipitations:"/>
+
+            <TextView
+                android:id="@+id/tvPrecipitations"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="20 mm"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAirPressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llPrecipitations" >
+
+            <TextView
+                android:id="@+id/tvAirPressureTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Air pressure:"/>
+
+            <TextView
+                android:id="@+id/tvAirPressure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="1038 hPa"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llRelativeHumidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llAirPressure" >
+
+            <TextView
+                android:id="@+id/tvRelativeHumidityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Relative humidity:"/>
+
+            <TextView
+                android:id="@+id/tvRelativeHumidity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="88 %"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAirTemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llRelativeHumidity" >
+
+            <TextView
+                android:id="@+id/tvAirTemperatureTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Air temperature:"/>
+
+            <TextView
+                android:id="@+id/tvAirTemperature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="26.2 C"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llWindDirection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llAirTemperature" >
+
+            <TextView
+                android:id="@+id/tvWindDirectionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wind direction:"/>
+
+            <TextView
+                android:id="@+id/tvWindDirection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="South (165 deg.)"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llWindSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llWindDirection" >
+
+            <TextView
+                android:id="@+id/tvWindSpeedTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wind speed:"/>
+
+            <TextView
+                android:id="@+id/tvWindSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="1.1 - 1.7 m/s"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llWaterLevel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llWindSpeed" >
+
+            <TextView
+                android:id="@+id/tvWaterLevelTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Water level:"/>
+
+            <TextView
+                android:id="@+id/tvWaterLevel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="12 m"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llWaterTemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llWaterLevel" >
+
+            <TextView
+                android:id="@+id/tvWaterTemperatureTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Water temperature (C):"/>
+
+            <TextView
+                android:id="@+id/tvWaterTemperature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="3.2 C"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llUvIndex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            app:layout_constraintTop_toBottomOf="@id/llWaterTemperature" >
+
+            <TextView
+                android:id="@+id/tvUvIndexTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UvV index:"/>
+
+            <TextView
+                android:id="@+id/tvUvIndex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                tools:text="1"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            app:layout_constraintTop_toBottomOf="@id/llUvIndex"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

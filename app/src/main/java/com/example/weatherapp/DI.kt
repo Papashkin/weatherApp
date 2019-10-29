@@ -18,7 +18,7 @@ class AppModule {
     }
 
     @Provides
-    fun weatherService() : WeatherService {
+    fun provideWeatherService() : WeatherService {
 
         val okHttp = OkHttpClient.Builder()
             .addInterceptor(CurlInterceptor {curl ->

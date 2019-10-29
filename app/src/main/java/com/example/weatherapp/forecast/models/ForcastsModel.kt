@@ -3,80 +3,41 @@ package com.example.weatherapp.forecast.models
 import androidx.annotation.DrawableRes
 import com.example.weatherapp.R
 import com.google.gson.annotations.SerializedName
-import io.objectbox.annotation.*
-import io.objectbox.converter.PropertyConverter
-import io.objectbox.relation.ToMany
-import io.objectbox.relation.ToOne
 
-@Entity
 data class ForecastsModel(
-    @Id var id: Long,
     var forecasts: List<ForecastDTO> = listOf()
-) {
-    constructor(): this(0, listOf())
+)
 
-    @Backlink(to = "forecastsModel")
-    lateinit var forecastsMany: ToMany<ForecastDTO>
-}
-
-@Entity
 data class ForecastDTO(
-    @Id var id: Long,
-    val date: String,
-    @Transient val day: DayNightDTO,
-    @Transient val night: DayNightDTO
-) {
-    lateinit var forecastsModel: ToOne<ForecastsModel>
-}
+    var date: String,
+    var day: DayNightDTO,
+    var night: DayNightDTO
+)
 
-@Entity
 data class DayNightDTO(
-    @Id var id: Long,
+    var phenomenon: Phenomenon,
+    var tempmin: Double = 0.0,
+    var tempmax: Double = 0.0,
+    var text: String,
+    var sea: String? = null,
+    var peipsi: String? = null,
+    var places: List<PlaceDTO>,
+    var winds: List<WindDTO>
+)
 
-    @Convert(converter = PhenomenonConverter::class, dbType = String::class)
-    val phenomenon: Phenomenon,
-
-    val tempmin: Double = 0.0,
-    val tempmax: Double = 0.0,
-    val text: String,
-    val sea: String? = null,
-    val peipsi: String? = null,
-    val places: List<PlaceDTO>,
-    val winds: List<WindDTO>
-) {
-    lateinit var forecastDTO: ToOne<ForecastDTO>
-
-    @Backlink(to = "dayNightDTO")
-    lateinit var placesMany: ToMany<PlaceDTO>
-
-    @Backlink(to = "dayNightDTO")
-    lateinit var windsMany: ToMany<WindDTO>
-}
-
-@Entity
 data class WindDTO(
-    @Id var id: Long,
-    val name: String,
-    @Transient val direction: WindDirection,
-    val speedmin: Double,
-    val speedmax: Double
-) {
-    lateinit var dayNightDTO: ToOne<DayNightDTO>
-}
+    var name: String,
+    var direction: WindDirection,
+    var speedmin: Double,
+    var speedmax: Double
+)
 
-@Entity
 data class PlaceDTO(
-    @Id var id: Long,
-    val name: String,
-
-    @Convert(converter = PhenomenonConverter::class, dbType = String::class)
-    val phenomenon: Phenomenon,
-
-    val tempmin: Double,
-    val tempmax: Double
-) {
-    lateinit var dayNightDTO: ToOne<DayNightDTO>
-}
+    var name: String,
+    var phenomenon: Phenomenon,
+    var tempmin: Double,
+    var tempmax: Double
+)
 
 /**
  * Phenomenons:
@@ -155,15 +116,4 @@ enum class WindDirection(@DrawableRes val drawableId: Int) {
     east(R.drawable.wind_east),
     @SerializedName("Northeast wind")
     northeast(R.drawable.wind_northeast)
-}
-
-class PhenomenonConverter : PropertyConverter<Phenomenon, String> {
-
-    override fun convertToDatabaseValue(entityProperty: Phenomenon?): String {
-        return entityProperty?.name ?: ""
-    }
-
-    override fun convertToEntityProperty(databaseValue: String?): Phenomenon {
-        return Phenomenon.valueOf(databaseValue ?: "")
-    }
 }

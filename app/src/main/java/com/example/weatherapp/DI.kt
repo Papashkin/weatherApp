@@ -1,8 +1,11 @@
 package com.example.weatherapp
 
+import android.content.Context
 import android.util.Log
+import androidx.room.Room
 import com.example.weatherapp.cityCurrentForecast.CityCurrentForecastFragment
 import com.example.weatherapp.forecast.ForecastFragment
+import com.example.weatherapp.forecast.domain.ForecastDao
 import com.moczul.ok2curl.CurlInterceptor
 import dagger.Component
 import dagger.Module
@@ -12,16 +15,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-class AppModule {
+class AppModule(private val context: Context) {
     companion object {
         private val tag = AppModule::class.java.simpleName
     }
 
     @Provides
-    fun provideWeatherService() : WeatherService {
+    fun provideWeatherService(): WeatherService {
 
         val okHttp = OkHttpClient.Builder()
-            .addInterceptor(CurlInterceptor {curl ->
+            .addInterceptor(CurlInterceptor { curl ->
                 Log.i(tag, curl)
             })
             .build()
@@ -33,6 +36,21 @@ class AppModule {
             .build()
 
         return retrofit.create(WeatherService::class.java)
+    }
+
+    @Provides
+    fun provideWeatherDatabase(): WeatherDatabase {
+
+        return Room.databaseBuilder(
+            context,
+            WeatherDatabase::class.java,
+            "weatherMooncascade"
+        ).build()
+    }
+
+    @Provides
+    fun forecastDao(database: WeatherDatabase): ForecastDao {
+        return database.forecastDao()
     }
 }
 

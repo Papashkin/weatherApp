@@ -1,6 +1,7 @@
 package com.example.weatherapp.forecast
 
 import com.example.weatherapp.base.BasePresenter
+import com.example.weatherapp.forecast.domain.ForecastRepo
 import com.example.weatherapp.forecast.domain.GetForecasts
 import com.example.weatherapp.forecast.models.ForecastsModel
 import com.google.auto.factory.AutoFactory
@@ -28,7 +29,8 @@ interface ForecastView : MvpView {
 @AutoFactory
 @InjectViewState
 class ForecastPresenter @Inject constructor(
-    @Provided val getForecasts: GetForecasts
+    @Provided val getForecasts: GetForecasts,
+    @Provided val forecastRepo: ForecastRepo
 ) : BasePresenter<ForecastView>() {
 
     fun loadData() = launch {

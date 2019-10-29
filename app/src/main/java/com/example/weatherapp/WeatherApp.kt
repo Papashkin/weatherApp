@@ -8,6 +8,8 @@ class WeatherApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        di = DaggerWeatherAppComponent.create()
+        di = DaggerWeatherAppComponent.builder()
+            .appModule(AppModule(this))
+            .build()
     }
 }

@@ -9,5 +9,6 @@ class WeatherApp : Application() {
     override fun onCreate() {
         super.onCreate()
         di = DaggerWeatherAppComponent.create()
+        ObjectBox.init(this)
     }
 }

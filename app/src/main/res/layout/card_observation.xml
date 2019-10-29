@@ -291,7 +291,7 @@
                 android:id="@+id/tvUvIndexTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="UvV index:"/>
+                android:text="UV index:"/>
 
             <TextView
                 android:id="@+id/tvUvIndex"

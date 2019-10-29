@@ -11,11 +11,12 @@ data class ForecastPojo(
 
 @TypeConverters(ForecastConverter::class)
 data class DayNightPojo(
+    var id: Long,
     var date: String, // the same as in ForecastPojo
-    var phenomenon: Phenomenon = Phenomenon.clear,
+    var phenomenon: Phenomenon,
     var tempmin: Double = 0.0,
     var tempmax: Double = 0.0,
-    var text: String = "",
+    var text: String,
     var sea: String? = null,
     var peipsi: String? = null
 )
@@ -55,6 +56,7 @@ data class DayNightPojo(
 data class WindPojo(
     @PrimaryKey(autoGenerate = true) var windId: Long,
     var date: String, // the same as in ForecastPojo
+    var dayNightId: Long,
     var name: String,
     var direction: WindDirection,
     var speedmin: Double,
@@ -66,6 +68,7 @@ data class WindPojo(
 data class PlacePojo(
     @PrimaryKey(autoGenerate = true) var placeId: Long,
     var date: String, // the same as in ForecastPojo
+    var dayNightId: Long,
     var name: String,
     var phenomenon: Phenomenon,
     var tempmin: Double,

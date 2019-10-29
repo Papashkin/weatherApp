@@ -3,9 +3,10 @@ package com.example.weatherapp.forecast
 import com.example.weatherapp.base.BasePresenter
 import com.example.weatherapp.forecast.domain.ForecastRepo
 import com.example.weatherapp.forecast.domain.GetForecasts
-import com.example.weatherapp.forecast.models.ForecastsModel
+import com.example.weatherapp.forecast.models.*
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import moxy.InjectViewState
 import moxy.MvpView
@@ -36,6 +37,7 @@ class ForecastPresenter @Inject constructor(
     fun loadData() = launch {
         try {
             val forecastModel = getForecasts()
+            saveDataToBD(forecastModel).await()
             viewState.update(forecastModel)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -45,5 +47,17 @@ class ForecastPresenter @Inject constructor(
 
     fun onPlaceClick(name: String) {
         viewState.toCityDetails(name)
+    }
+
+    private fun saveDataToBD(model: ForecastsModel) = async {
+        val windPojos = mutableListOf<WindPojo>()
+        val placePojos = mutableListOf<PlacePojo>()
+        model.forecasts.forEach { forecast ->
+            val id = forecastRepo.insert(forecast.convertToForecastPojo())
+            forecast.day.places.forEach {place ->
+//                place.convertToPojo()
+
+            }
+        }
     }
 }

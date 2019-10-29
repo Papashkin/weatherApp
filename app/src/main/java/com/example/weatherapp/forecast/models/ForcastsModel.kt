@@ -117,3 +117,53 @@ enum class WindDirection(@DrawableRes val drawableId: Int) {
     @SerializedName("Northeast wind")
     northeast(R.drawable.wind_northeast)
 }
+
+fun ForecastDTO.convertToForecastPojo(): ForecastPojo {
+    return ForecastPojo(
+        date = this.date,
+        day = DayNightPojo(
+            id = 0L,
+            date = this.date,
+            phenomenon = this.day.phenomenon,
+            tempmin = this.day.tempmin,
+            tempmax = this.day.tempmax,
+            peipsi = this.day.peipsi,
+            sea = this.day.sea,
+            text = this.day.text
+        ),
+        night = DayNightPojo(
+            id = 0L,
+            date = this.date,
+            phenomenon = this.night.phenomenon,
+            tempmin = this.night.tempmin,
+            tempmax = this.night.tempmax,
+            peipsi = this.night.peipsi,
+            sea = this.night.sea,
+            text = this.night.text
+        )
+    )
+}
+
+fun WindDTO.convertToPojo(date: String, dayNightId: Long): WindPojo {
+    return WindPojo(
+        windId = 0L,
+        date = date,
+        name = this.name,
+        direction = this.direction,
+        speedmin = this.speedmin,
+        speedmax = this.speedmax,
+        dayNightId = dayNightId
+    )
+}
+
+fun PlaceDTO.convertToPojo(date: String, dayNightId: Long): PlacePojo {
+    return PlacePojo(
+        placeId = 0L,
+        date = date,
+        name = this.name,
+        phenomenon = this.phenomenon,
+        tempmin = this.tempmin,
+        tempmax = this.tempmax,
+        dayNightId = dayNightId
+    )
+}

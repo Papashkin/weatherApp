@@ -1,9 +1,6 @@
 package com.example.weatherapp.forecast.domain
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.weatherapp.forecast.models.ForecastPojo
 import com.example.weatherapp.forecast.models.PlacePojo
 import com.example.weatherapp.forecast.models.WindPojo
@@ -18,7 +15,7 @@ interface ForecastDao {
     suspend fun getAll() : List<ForecastPojo>
 
     @Insert
-    suspend fun insert(forecastPojo: ForecastPojo)
+    suspend fun insert(forecastPojo: ForecastPojo): Long
 
     @Insert
     suspend fun insert(forecastPojos: List<ForecastPojo>)
@@ -59,6 +56,22 @@ interface ForecastDao {
     @Delete
     suspend fun deletePlace(placePojos: List<PlacePojo>)
 
+    @Query("delete from forecast")
+    suspend fun deleteAllForecasts()
+
+    @Query("delete from wind")
+    suspend fun deleteAllWinds()
+
+    @Query("delete from place")
+    suspend fun deleteAllPlaces()
+
+    @Transaction
+    suspend fun deleteAll() {
+        deleteAllPlaces()
+        deleteAllWinds()
+        deleteAllForecasts()
+    }
+
 }
 
 @AutoFactory
@@ -82,4 +95,6 @@ class ForecastRepo @Inject constructor(
     suspend fun insertPlace(placePojos: List<PlacePojo>) = forecastDao.insertPlace(placePojos)
     suspend fun deletePlace(placePojo: PlacePojo) = forecastDao.deletePlace(placePojo)
     suspend fun deletePlace(placePojos: List<PlacePojo>) = forecastDao.deletePlace(placePojos)
+
+    suspend fun deleteAll() = forecastDao.deleteAll()
 }

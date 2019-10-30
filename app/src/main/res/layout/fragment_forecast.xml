@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#bbdefb">
+    android:background="@color/main_background_color">
 
     <TextView
         android:id="@+id/tvForecastTitle"
         style="@style/TextTitleStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Forecasts"
         android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:text="@string/forecasts_title"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView

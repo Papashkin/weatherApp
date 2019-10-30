@@ -1,10 +1,10 @@
-package com.example.weatherapp.cityCurrentForecast
+package com.example.weatherapp.observation
 
 import com.example.weatherapp.base.BasePresenter
-import com.example.weatherapp.cityCurrentForecast.domain.GetDetails
-import com.example.weatherapp.cityCurrentForecast.domain.ObservationRepo
-import com.example.weatherapp.cityCurrentForecast.models.ObservationsModel
-import com.example.weatherapp.cityCurrentForecast.models.StationDTO
+import com.example.weatherapp.observation.domain.GetDetails
+import com.example.weatherapp.observation.domain.ObservationRepo
+import com.example.weatherapp.observation.models.ObservationsModel
+import com.example.weatherapp.observation.models.StationDTO
 import com.example.weatherapp.convertToDTO
 import com.example.weatherapp.convertToPOJO
 import com.google.auto.factory.AutoFactory

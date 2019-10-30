@@ -1,11 +1,11 @@
-package com.example.weatherapp.cityCurrentForecast
+package com.example.weatherapp.observation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
-import com.example.weatherapp.cityCurrentForecast.models.StationDTO
+import com.example.weatherapp.observation.models.StationDTO
 import kotlinx.android.synthetic.main.card_observation.view.*
 
 class ObservationsAdapter : RecyclerView.Adapter<ObservationsAdapter.ObservationViewHolder>() {
@@ -69,7 +69,7 @@ class ObservationsAdapter : RecyclerView.Adapter<ObservationsAdapter.Observation
                 itemView.llAirTemperature.visibility = View.GONE
             } else {
                 itemView.llAirTemperature.visibility = View.VISIBLE
-                itemView.tvAirTemperature.text = ("${item.airtemperature} °C")
+                itemView.tvAirTemperature.text = ("${item.airtemperature}°C")
             }
             if (item.winddirection.isEmpty()) {
                 itemView.llWindDirection.visibility = View.GONE
@@ -94,7 +94,7 @@ class ObservationsAdapter : RecyclerView.Adapter<ObservationsAdapter.Observation
                 itemView.llWaterTemperature.visibility = View.GONE
             } else {
                 itemView.llWaterTemperature.visibility = View.VISIBLE
-                itemView.tvWaterTemperature.text = ("${item.watertemperature}°")
+                itemView.tvWaterTemperature.text = ("${item.watertemperature}°C")
             }
             if (item.uvindex.isEmpty()) {
                 itemView.llUvIndex.visibility = View.GONE

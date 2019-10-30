@@ -1,7 +1,7 @@
-package com.example.weatherapp.cityCurrentForecast.domain
+package com.example.weatherapp.observation.domain
 
 import com.example.weatherapp.WeatherService
-import com.example.weatherapp.cityCurrentForecast.models.ObservationsModel
+import com.example.weatherapp.observation.models.ObservationsModel
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import javax.inject.Inject

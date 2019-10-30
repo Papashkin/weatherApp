@@ -1,9 +1,9 @@
-package com.example.weatherapp.cityCurrentForecast.domain
+package com.example.weatherapp.observation.domain
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.weatherapp.cityCurrentForecast.models.ObservationPOJO
+import com.example.weatherapp.observation.models.ObservationPOJO
 import com.google.auto.factory.AutoFactory
 import com.google.auto.factory.Provided
 import javax.inject.Inject

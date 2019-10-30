@@ -94,7 +94,7 @@ class ForecastAdapter(
             if (data.places.isNullOrEmpty()) hidePlaces() else showPlaces(data.places)
             if (data.winds.isNullOrEmpty()) hideWinds() else showWinds(data.winds)
             itemView.tvForecastTemp.text =
-                setTempMinMax(data.tempmin.roundToInt(), data.tempmax.roundToInt())
+                setTempMinMax(data.tempmin?.roundToInt(), data.tempmax?.roundToInt())
             itemView.ivForecastPhenomenon.setImageDrawable(
                 ContextCompat.getDrawable(itemView.context, data.phenomenon.drawableId)
             )
@@ -111,7 +111,7 @@ class ForecastAdapter(
                 )
                 view.tvWind.text = wind.name
                 view.tvSpeed.text =
-                    setSpeedMinMax(wind.speedmin.roundToInt(), wind.speedmax.roundToInt())
+                    setSpeedMinMax(wind.speedmin?.roundToInt(), wind.speedmax?.roundToInt())
                 view.ivDirection.setImageDrawable(
                     ContextCompat.getDrawable(itemView.context, wind.direction.drawableId)
                 )
@@ -130,7 +130,7 @@ class ForecastAdapter(
                 )
                 view.tvPlace.text = place.name
                 view.tvTemp.text =
-                    setTempMinMax(place.tempmin.roundToInt(), place.tempmax.roundToInt())
+                    setTempMinMax(place.tempmin?.roundToInt(), place.tempmax?.roundToInt())
                 view.ivPhenomenon.setImageDrawable(
                     ContextCompat.getDrawable(itemView.context, place.phenomenon.drawableId)
                 )
@@ -145,15 +145,30 @@ class ForecastAdapter(
             view.setOnTouchListener(listener)
         }
 
-        private fun setTempMinMax(tempMin: Int, tempMax: Int): String {
-            val correctTempMin = if (tempMin > 0) "+$tempMin" else "$tempMin"
-            val correctTempMax = if (tempMax > 0) "+$tempMax" else "$tempMax"
-
-            return "$correctTempMin .. $correctTempMax"
+        private fun setTempMinMax(tempMin: Int?, tempMax: Int?): String {
+            val tempMinIsNull = tempMin == null
+            val tempMaxIsNull = tempMax == null
+            return when {
+                (tempMinIsNull && tempMaxIsNull) -> "N/A"
+                (!tempMinIsNull && tempMaxIsNull) -> if (tempMin!! > 0) "+$tempMin" else "$tempMin"
+                (tempMinIsNull && !tempMaxIsNull) -> if (tempMax!! > 0) "+$tempMax" else "$tempMax"
+                (!tempMinIsNull && !tempMaxIsNull) -> {
+                    "${if (tempMin!! > 0) "+$tempMin" else "$tempMin"} .. ${if (tempMax!! > 0) "+$tempMax" else "$tempMax"}"
+                }
+                else -> "N/A"
+            }
         }
 
-        private fun setSpeedMinMax(speedMin: Int, speedMax: Int): String {
-            return "$speedMin - $speedMax m/s"
+        private fun setSpeedMinMax(speedMin: Int?, speedMax: Int?): String {
+            val tempMinIsNull = speedMin == null
+            val tempMaxIsNull = speedMax == null
+            return when {
+                (tempMinIsNull && tempMaxIsNull) -> "N/A"
+                (!tempMinIsNull && tempMaxIsNull) -> "$speedMin m/s"
+                (tempMinIsNull && !tempMaxIsNull) -> "$speedMax m/s"
+                (!tempMinIsNull && !tempMaxIsNull) -> "$speedMin - $speedMax m/s"
+                else -> "N/A"
+            }
         }
 
         private fun showDayAndHideNight() {

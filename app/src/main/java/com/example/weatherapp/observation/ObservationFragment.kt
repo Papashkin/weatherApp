@@ -1,4 +1,4 @@
-package com.example.weatherapp.cityCurrentForecast
+package com.example.weatherapp.observation
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.weatherapp.R
 import com.example.weatherapp.base.BaseFragment
-import com.example.weatherapp.cityCurrentForecast.models.StationDTO
+import com.example.weatherapp.observation.models.StationDTO
 import com.example.weatherapp.di
 import kotlinx.android.synthetic.main.fragment_observation.*
 import moxy.ktx.moxyPresenter
@@ -49,6 +49,6 @@ class ObservationFragment :
     }
 
     override fun showErrorToast() {
-        showToast("No data to show")
+        showToast(R.string.err_no_data)
     }
 }

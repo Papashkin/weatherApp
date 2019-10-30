@@ -1,3 +1,31 @@
 <resources>
     <string name="app_name">weatherApp</string>
+
+    <!-- ==== FORECAST SCREEN ==== -->
+    <string name="forecast_day_title">Day</string>
+    <string name="forecast_to_night_button">Show night forecast</string>
+    <string name="forecast_to_day_button">Show day forecast</string>
+    <string name="forecast_sea">Sea</string>
+    <string name="forecast_peipsi">Peipsi</string>
+    <string name="forecast_places">Places</string>
+    <string name="forecast_winds">Winds</string>
+    <string name="forecasts_title">Forecasts</string>
+
+    <!-- ==== OBSERVATION SCREEN ==== -->
+    <string name="observation_location">Location:</string>
+    <string name="observation_phenomenon">Phenomenon:</string>
+    <string name="observation_visibility">Visibility:</string>
+    <string name="observation_precipitations">Precipitations:</string>
+    <string name="observation_air_pressure">Air pressure:</string>
+    <string name="observation_relative_humidity">Relative humidity:</string>
+    <string name="observation_air_temperature">Air temperature:</string>
+    <string name="observation_wind_direction">Wind direction:</string>
+    <string name="observation_wind_speed">Wind speed:</string>
+    <string name="observation_water_level">Water level:</string>
+    <string name="observation_water_temperature">Water temperature (°C):</string>
+    <string name="observation_uv_index">UV index:</string>
+
+    <!-- ==== ERRORS ==== -->
+    <string name="err_no_data">No data to display</string>
+
 </resources>

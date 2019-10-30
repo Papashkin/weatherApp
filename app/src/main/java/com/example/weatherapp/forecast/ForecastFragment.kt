@@ -37,7 +37,7 @@ class ForecastFragment :
     }
 
     override fun showError() {
-        showToast("No data to show loading from internet")
+        showToast(R.string.err_no_data)
     }
 
     override fun toCityDetails(name: String) {

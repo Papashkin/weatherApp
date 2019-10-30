@@ -2,8 +2,8 @@ package com.example.weatherapp
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.weatherapp.cityCurrentForecast.domain.ObservationDao
-import com.example.weatherapp.cityCurrentForecast.models.ObservationPOJO
+import com.example.weatherapp.observation.domain.ObservationDao
+import com.example.weatherapp.observation.models.ObservationPOJO
 import com.example.weatherapp.forecast.domain.ForecastDao
 import com.example.weatherapp.forecast.models.ForecastPOJO
 import com.example.weatherapp.forecast.models.PlacePOJO

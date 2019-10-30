@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
     android:background="@drawable/shape_forecast_card"
-    android:elevation="2dp"
-    android:orientation="vertical">
+    android:elevation="2dp">
 
     <TextView
         android:id="@+id/tvDate"
@@ -35,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
-            android:text="Day"
+            android:text="@string/forecast_day_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorPrimaryDark"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +49,9 @@
             android:background="@drawable/shape_day_night_switch"
             android:drawableEnd="@drawable/icon_arrow_right"
             android:gravity="center"
-            android:text="Show night forecast"
+            android:paddingStart="8dp"
+            android:paddingEnd="1dp"
+            android:text="@string/forecast_to_night_button"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +66,9 @@
             android:background="@drawable/shape_day_night_switch"
             android:drawableEnd="@drawable/icon_arrow_right"
             android:gravity="center"
-            android:text="Show day forecast"
+            android:paddingStart="8dp"
+            android:paddingEnd="1dp"
+            android:text="@string/forecast_to_day_button"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:visibility="gone"
@@ -99,9 +102,9 @@
             android:id="@+id/tvDesc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             app:layout_constraintBottom_toTopOf="@id/barrierForecast"
             app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Sea"
+                android:text="@string/forecast_sea"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
             <TextView
@@ -168,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="Peipsi"
+                android:text="@string/forecast_peipsi"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
             <TextView
@@ -195,7 +198,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Places"
+            android:text="@string/forecast_places"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             app:layout_constraintTop_toBottomOf="@id/llPeipsi" />
 
@@ -220,7 +223,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Winds"
+            android:text="@string/forecast_winds"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             app:layout_constraintTop_toBottomOf="@id/dividerPlaces" />
 
@@ -235,8 +238,8 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            app:layout_constraintTop_toBottomOf="@id/llWinds"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llWinds" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

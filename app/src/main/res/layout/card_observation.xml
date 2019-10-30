@@ -1,51 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_margin="8dp"
+    android:background="@drawable/shape_forecast_card"
+    android:elevation="2dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@drawable/shape_forecast_card"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvStationName"
+            style="@style/BaseTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
-            tools:text="Test station"
             android:textAlignment="center"
-            style="@style/BaseTextStyle"
             android:textAppearance="@style/TextAppearance.AppCompat.Menu"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Test station" />
 
         <LinearLayout
             android:id="@+id/llLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/tvStationName" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/tvStationName">
 
             <TextView
                 android:id="@+id/tvLocationTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location:"/>
+                android:text="@string/observation_location" />
 
             <TextView
                 android:id="@+id/tvLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="(56.234; 60.3429)"/>
+                tools:text="(56.234; 60.3429)" />
 
         </LinearLayout>
 
@@ -53,22 +55,22 @@
             android:id="@+id/llPhenomenon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llLocation" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llLocation">
 
             <TextView
                 android:id="@+id/tvPhenomenonTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phenomenon:"/>
+                android:text="@string/observation_phenomenon" />
 
             <TextView
                 android:id="@+id/tvPhenomenon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="Cloud"/>
+                tools:text="Cloud" />
 
         </LinearLayout>
 
@@ -76,22 +78,22 @@
             android:id="@+id/llVisibility"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llPhenomenon" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llPhenomenon">
 
             <TextView
                 android:id="@+id/tvVisibilityTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Visibility:"/>
+                android:text="@string/observation_visibility" />
 
             <TextView
                 android:id="@+id/tvVisibility"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="28 m"/>
+                tools:text="28 m" />
 
         </LinearLayout>
 
@@ -99,22 +101,22 @@
             android:id="@+id/llPrecipitations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llVisibility" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llVisibility">
 
             <TextView
                 android:id="@+id/tvPrecipitationsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Precipitations:"/>
+                android:text="@string/observation_precipitations" />
 
             <TextView
                 android:id="@+id/tvPrecipitations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="20 mm"/>
+                tools:text="20 mm" />
 
         </LinearLayout>
 
@@ -122,22 +124,22 @@
             android:id="@+id/llAirPressure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llPrecipitations" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llPrecipitations">
 
             <TextView
                 android:id="@+id/tvAirPressureTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Air pressure:"/>
+                android:text="@string/observation_air_pressure" />
 
             <TextView
                 android:id="@+id/tvAirPressure"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="1038 hPa"/>
+                tools:text="1038 hPa" />
 
         </LinearLayout>
 
@@ -145,22 +147,22 @@
             android:id="@+id/llRelativeHumidity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llAirPressure" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llAirPressure">
 
             <TextView
                 android:id="@+id/tvRelativeHumidityTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Relative humidity:"/>
+                android:text="@string/observation_relative_humidity" />
 
             <TextView
                 android:id="@+id/tvRelativeHumidity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="88 %"/>
+                tools:text="88 %" />
 
         </LinearLayout>
 
@@ -168,22 +170,22 @@
             android:id="@+id/llAirTemperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llRelativeHumidity" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llRelativeHumidity">
 
             <TextView
                 android:id="@+id/tvAirTemperatureTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Air temperature:"/>
+                android:text="@string/observation_air_temperature" />
 
             <TextView
                 android:id="@+id/tvAirTemperature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="26.2 C"/>
+                tools:text="26.2°C" />
 
         </LinearLayout>
 
@@ -191,22 +193,22 @@
             android:id="@+id/llWindDirection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llAirTemperature" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llAirTemperature">
 
             <TextView
                 android:id="@+id/tvWindDirectionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wind direction:"/>
+                android:text="@string/observation_wind_direction" />
 
             <TextView
                 android:id="@+id/tvWindDirection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="South (165 deg.)"/>
+                tools:text="South (165 deg.)" />
 
         </LinearLayout>
 
@@ -214,22 +216,22 @@
             android:id="@+id/llWindSpeed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llWindDirection" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llWindDirection">
 
             <TextView
                 android:id="@+id/tvWindSpeedTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wind speed:"/>
+                android:text="@string/observation_wind_speed" />
 
             <TextView
                 android:id="@+id/tvWindSpeed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="1.1 - 1.7 m/s"/>
+                tools:text="1.1 - 1.7 m/s" />
 
         </LinearLayout>
 
@@ -237,22 +239,22 @@
             android:id="@+id/llWaterLevel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llWindSpeed" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llWindSpeed">
 
             <TextView
                 android:id="@+id/tvWaterLevelTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Water level:"/>
+                android:text="@string/observation_water_level" />
 
             <TextView
                 android:id="@+id/tvWaterLevel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="12 m"/>
+                tools:text="12 m" />
 
         </LinearLayout>
 
@@ -260,22 +262,22 @@
             android:id="@+id/llWaterTemperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llWaterLevel" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llWaterLevel">
 
             <TextView
                 android:id="@+id/tvWaterTemperatureTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Water temperature (C):"/>
+                android:text="@string/observation_water_temperature" />
 
             <TextView
                 android:id="@+id/tvWaterTemperature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="3.2 C"/>
+                tools:text="3.2°C" />
 
         </LinearLayout>
 
@@ -283,29 +285,24 @@
             android:id="@+id/llUvIndex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_margin="2dp"
-            app:layout_constraintTop_toBottomOf="@id/llWaterTemperature" >
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/llWaterTemperature">
 
             <TextView
                 android:id="@+id/tvUvIndexTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="UV index:"/>
+                android:text="@string/observation_uv_index" />
 
             <TextView
                 android:id="@+id/tvUvIndex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
-                tools:text="1"/>
+                tools:text="1" />
 
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            app:layout_constraintTop_toBottomOf="@id/llUvIndex"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

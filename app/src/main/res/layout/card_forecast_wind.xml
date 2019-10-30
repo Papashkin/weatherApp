@@ -16,10 +16,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
+        android:layout_margin="3dp"
         android:background="@drawable/shape_forecast_place"
         android:clickable="true"
-        android:padding="2dp"
+        android:padding="4dp"
         app:layout_constraintEnd_toEndOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

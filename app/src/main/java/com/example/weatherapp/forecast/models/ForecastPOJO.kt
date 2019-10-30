@@ -9,14 +9,12 @@ data class ForecastPOJO(
     @Embedded(prefix = "night_") var night: DayNightPOJO? = null
 )
 
-//@Entity(tableName = "day_night")
 @TypeConverters(ForecastConverter::class)
 data class DayNightPOJO(
-//    @PrimaryKey(autoGenerate = true) var id: Long,
-    var date: String, // the same as in ForecastPOJO
+    var date: String,
     var phenomenon: Phenomenon,
-    var tempmin: Double = 0.0,
-    var tempmax: Double = 0.0,
+    var tempmin: Double?,
+    var tempmax: Double?,
     var text: String,
     var sea: String? = null,
     var peipsi: String? = null
@@ -26,12 +24,12 @@ data class DayNightPOJO(
 @TypeConverters(ForecastConverter::class)
 data class WindPOJO(
     @PrimaryKey(autoGenerate = true) var windId: Long,
-    var date: String, // the same as in ForecastPOJO
+    var date: String,
     var forecastId: Long,
     var name: String,
     var direction: WindDirection,
-    var speedmin: Double,
-    var speedmax: Double,
+    var speedmin: Double?,
+    var speedmax: Double?,
     var isDay: Boolean
 )
 
@@ -39,12 +37,12 @@ data class WindPOJO(
 @TypeConverters(ForecastConverter::class)
 data class PlacePOJO(
     @PrimaryKey(autoGenerate = true) var placeId: Long,
-    var date: String, // the same as in ForecastPOJO
+    var date: String,
     var forecastId: Long,
     var name: String,
     var phenomenon: Phenomenon,
-    var tempmin: Double,
-    var tempmax: Double,
+    var tempmin: Double?,
+    var tempmax: Double?,
     var isDay: Boolean
 )
 

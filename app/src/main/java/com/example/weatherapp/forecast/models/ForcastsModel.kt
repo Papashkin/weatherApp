@@ -16,8 +16,8 @@ data class ForecastDTO(
 
 data class DayNightDTO(
     var phenomenon: Phenomenon,
-    var tempmin: Double = 0.0,
-    var tempmax: Double = 0.0,
+    var tempmin: Double?,
+    var tempmax: Double?,
     var text: String,
     var sea: String? = null,
     var peipsi: String? = null,
@@ -28,15 +28,15 @@ data class DayNightDTO(
 data class WindDTO(
     var name: String,
     var direction: WindDirection,
-    var speedmin: Double,
-    var speedmax: Double
+    var speedmin: Double?,
+    var speedmax: Double?
 )
 
 data class PlaceDTO(
     var name: String,
     var phenomenon: Phenomenon,
-    var tempmin: Double,
-    var tempmax: Double
+    var tempmin: Double?,
+    var tempmax: Double?
 )
 
 /**

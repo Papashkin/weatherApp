@@ -1,8 +1,8 @@
 package com.example.weatherapp
 
-import com.example.weatherapp.cityCurrentForecast.models.ObservationPOJO
-import com.example.weatherapp.cityCurrentForecast.models.ObservationsModel
-import com.example.weatherapp.cityCurrentForecast.models.StationDTO
+import com.example.weatherapp.observation.models.ObservationPOJO
+import com.example.weatherapp.observation.models.ObservationsModel
+import com.example.weatherapp.observation.models.StationDTO
 import com.example.weatherapp.forecast.models.*
 
 fun ForecastDTO.convertToForecastPojo(): ForecastPOJO {

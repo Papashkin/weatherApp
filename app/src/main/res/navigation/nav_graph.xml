@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/observationFragment"
-        android:name="com.example.weatherapp.cityCurrentForecast.ObservationFragment"
+        android:name="com.example.weatherapp.observation.ObservationFragment"
         android:label="ObservationFragment" >
         <argument
             android:name="name"

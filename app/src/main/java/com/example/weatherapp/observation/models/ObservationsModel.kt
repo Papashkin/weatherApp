@@ -1,12 +1,11 @@
-package com.example.weatherapp.cityCurrentForecast.models
+package com.example.weatherapp.observation.models
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+class ObservationsModel(
+    val timestamp: String,
+    val observations: List<StationDTO> = listOf()
+)
 
-
-@Entity(tableName = "observation")
-data class ObservationPOJO(
-    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
+class StationDTO(
     val name: String,
     val wmocode: String,
     val longitude: String,
@@ -23,6 +22,5 @@ data class ObservationPOJO(
     val waterlevel: String,
     val waterlevel_eh2000: String,
     val watertemperature: String,
-    val uvindex: String,
-    val timestamp: String
+    val uvindex: String
 )

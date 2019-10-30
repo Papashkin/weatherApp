@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="#bbdefb">
+    android:background="@color/main_background_color">
 
     <TextView
         android:id="@+id/tvCityName"

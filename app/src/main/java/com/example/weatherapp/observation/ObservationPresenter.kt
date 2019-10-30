@@ -27,6 +27,9 @@ interface ObservationView : MvpView {
     fun setObservationTime(observationTime: String)
 
     @StateStrategyType(SkipStrategy::class)
+    fun hideLoading()
+
+    @StateStrategyType(SkipStrategy::class)
     fun showErrorToast()
 }
 
@@ -46,15 +49,18 @@ class ObservationPresenter @Inject constructor(
             val timestamp = response.timestamp.toLong()
             viewState.setObservationTime(DateFormat.getTimeInstance().format(timestamp))
             viewState.show(observations)
+            viewState.hideLoading()
         } catch (e: Exception) {
             val model: ObservationsModel = getStationsFromDB(name).await()
             val timestamp = model.timestamp.toLong()
             viewState.setObservationTime(DateFormat.getTimeInstance().format(timestamp))
             if (model.observations.isNullOrEmpty()) {
                 e.printStackTrace()
+                viewState.hideLoading()
                 viewState.showErrorToast()
             } else {
                 viewState.show(model.observations)
+                viewState.hideLoading()
             }
         }
     }

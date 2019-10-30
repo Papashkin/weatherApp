@@ -40,6 +40,10 @@ class ForecastFragment :
         showToast(R.string.err_no_data)
     }
 
+    override fun hideLoading() {
+        clLoading.visibility = View.GONE
+    }
+
     override fun toCityDetails(name: String) {
         findNavController().navigate(
             ForecastFragmentDirections.actionForecastFragmentToObservationFragment(name))

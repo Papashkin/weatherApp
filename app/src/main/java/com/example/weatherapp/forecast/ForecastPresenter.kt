@@ -27,6 +27,9 @@ interface ForecastView : MvpView {
     fun showError()
 
     @StateStrategyType(SkipStrategy::class)
+    fun hideLoading()
+
+    @StateStrategyType(SkipStrategy::class)
     fun toCityDetails(name: String)
 }
 
@@ -42,13 +45,16 @@ class ForecastPresenter @Inject constructor(
             val forecastModel = getForecasts()
             saveDataToBD(forecastModel).await()
             viewState.update(forecastModel)
+            viewState.hideLoading()
         } catch (e: Exception) {
             val forecastModel = getDataFromBD().await()
             if (forecastModel.forecasts.isNullOrEmpty()) {
                 e.printStackTrace()
+                viewState.hideLoading()
                 viewState.showError()
             } else {
                 viewState.update(forecastModel)
+                viewState.hideLoading()
             }
         }
     }

@@ -55,4 +55,8 @@ class ObservationFragment :
     override fun showErrorToast() {
         showToast(R.string.err_no_data)
     }
+
+    override fun hideLoading() {
+        clLoading.visibility = View.GONE
+    }
 }

@@ -24,4 +24,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvForecastTitle" />
 
+    <include
+        android:id="@+id/clLoading"
+        android:visibility="visible"
+        layout="@layout/layout_progress_loading"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

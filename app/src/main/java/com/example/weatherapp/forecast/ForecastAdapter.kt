@@ -70,9 +70,11 @@ class ForecastAdapter(
             }
         }
 
-        private fun setNewData(dayNight: DayNightDTO) {
-            setForecastData(dayNight)
-            itemView.invalidate()
+        private fun setNewData(dayNight: DayNightDTO?) {
+            if (dayNight != null) {
+                setForecastData(dayNight)
+                itemView.invalidate()
+            }
         }
 
         private fun setForecastData(data: DayNightDTO) {

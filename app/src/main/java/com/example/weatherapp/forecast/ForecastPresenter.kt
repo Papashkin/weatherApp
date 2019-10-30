@@ -4,7 +4,7 @@ import com.example.weatherapp.base.BasePresenter
 import com.example.weatherapp.convertToDTO
 import com.example.weatherapp.convertToForecastPojo
 import com.example.weatherapp.convertToPojo
-import com.example.weatherapp.forecast.domain.ForecastRepo
+import com.example.weatherapp.forecast.data.ForecastRepository
 import com.example.weatherapp.forecast.domain.GetForecasts
 import com.example.weatherapp.forecast.models.*
 import com.google.auto.factory.AutoFactory
@@ -34,7 +34,7 @@ interface ForecastView : MvpView {
 @InjectViewState
 class ForecastPresenter @Inject constructor(
     @Provided private val getForecasts: GetForecasts,
-    @Provided private val forecastRepo: ForecastRepo
+    @Provided private val forecastRepository: ForecastRepository
 ) : BasePresenter<ForecastView>() {
 
     fun loadData() = launch {
@@ -58,37 +58,37 @@ class ForecastPresenter @Inject constructor(
     }
 
     private fun saveDataToBD(model: ForecastsModel) = async {
-        forecastRepo.deleteAll()
+        forecastRepository.deleteAll()
         model.forecasts.forEach { forecast ->
-            val forecastId = forecastRepo.insert(forecast.convertToForecastPojo())
+            val forecastId = forecastRepository.insert(forecast.convertToForecastPojo())
             // get day places from DTO to POJO
             forecast.day?.places?.map {
                 it.convertToPojo(forecast.date, forecastId, true)
-            }?.let { forecastRepo.insertPlace(it) }
+            }?.let { forecastRepository.insertPlace(it) }
 
             // get day winds from DTO to POJO
             forecast.day?.winds?.map {
                 it.convertToPojo(forecast.date, forecastId, true)
-            }?.let { forecastRepo.insertWind(it) }
+            }?.let { forecastRepository.insertWind(it) }
 
             // get night places from DTO to POJO
             forecast.night?.places?.map {
                 it.convertToPojo(forecast.date, forecastId, false)
-            }?.let { forecastRepo.insertPlace(it) }
+            }?.let { forecastRepository.insertPlace(it) }
 
             // get night winds from DTO to POJO
             forecast.night?.winds?.map {
                 it.convertToPojo(forecast.date, forecastId, false)
-            }?.let { forecastRepo.insertWind(it) }
+            }?.let { forecastRepository.insertWind(it) }
         }
     }
 
     private fun getDataFromBD() = async {
         val forecastsDTO = mutableListOf<ForecastDTO>()
-        val forecastPojos = forecastRepo.getAll()
+        val forecastPojos = forecastRepository.getAll()
         forecastPojos.forEach { forecastPojo ->
-            val placesPojos = forecastRepo.getForecastPlaces(forecastPojo.date)
-            val windsPojos = forecastRepo.getForecastWinds(forecastPojo.date)
+            val placesPojos = forecastRepository.getForecastPlaces(forecastPojo.date)
+            val windsPojos = forecastRepository.getForecastWinds(forecastPojo.date)
 
             val dayDTO = forecastPojo.day?.convertToDTO(
                 places = placesPojos.filter { it.isDay }.map { it.convertToDTO() },

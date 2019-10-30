@@ -1,4 +1,4 @@
-package com.example.weatherapp.forecast.domain
+package com.example.weatherapp.forecast.data
 
 import androidx.room.*
 import com.example.weatherapp.forecast.models.ForecastPOJO
@@ -47,7 +47,7 @@ interface ForecastDao {
 }
 
 @AutoFactory
-class ForecastRepo @Inject constructor(
+class ForecastRepository @Inject constructor(
     @Provided private val forecastDao: ForecastDao
 ) {
     // forecasts

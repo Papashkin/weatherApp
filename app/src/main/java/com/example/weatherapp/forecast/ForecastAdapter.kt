@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherapp.NumbersToWords
 import com.example.weatherapp.R
 import com.example.weatherapp.forecast.models.*
 import kotlinx.android.synthetic.main.card_forecast.view.*
@@ -42,6 +43,8 @@ class ForecastAdapter(
 
     inner class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+        private val wordSeparator = " "
+        private val degCelsius = "°C"
         /* this variable allows to scroll text inside of the Sea and Peipsi text views,
         independently of the recycler view behaviour */
         private val listener = View.OnTouchListener { v, event ->
@@ -78,18 +81,18 @@ class ForecastAdapter(
         }
 
         private fun setForecastData(data: DayNightDTO) {
-            itemView.tvDesc.text = data.text
+            itemView.tvDesc.text = changeDegreesNumbersToWords(data.text)
             if (data.sea.isNullOrBlank()) {
                 itemView.llSea.visibility = View.GONE
             } else {
                 itemView.llSea.visibility = View.VISIBLE
-                itemView.tvSea.text = data.sea
+                itemView.tvSea.text = changeDegreesNumbersToWords(data.sea ?: "")
             }
             if (data.peipsi.isNullOrBlank()) {
                 itemView.llPeipsi.visibility = View.GONE
             } else {
                 itemView.llPeipsi.visibility = View.VISIBLE
-                itemView.tvPeipsi.text = data.peipsi
+                itemView.tvPeipsi.text = changeDegreesNumbersToWords(data.peipsi ?: "")
             }
             if (data.places.isNullOrEmpty()) hidePlaces() else showPlaces(data.places)
             if (data.winds.isNullOrEmpty()) hideWinds() else showWinds(data.winds)
@@ -205,6 +208,30 @@ class ForecastAdapter(
         private fun hideWinds() {
             itemView.tvWindsTitle.visibility = View.GONE
             itemView.llWinds.visibility = View.GONE
+        }
+
+        private fun changeDegreesNumbersToWords(text: String): String {
+            if (!text.contains(degCelsius)) return text
+
+            val words = text.split(wordSeparator).toMutableList()
+            val outText = mutableListOf<String>()
+            words.forEach { word ->
+                if (word.contains(degCelsius)) {
+                    val temperatures =
+                        word.split(Regex("[^\\d]")).filter { it.isNotBlank() }.map { it.toInt() }
+                    temperatures.forEach { temp ->
+                        val test = NumbersToWords().convert(temp)
+                        outText.add(test)
+                        if (temperatures.indexOf(temp) < temperatures.size-1) {
+                            outText.add("-")
+                        }
+                    }
+                    outText.add("degrees")
+                } else {
+                    outText.add(word)
+                }
+            }
+            return outText.joinToString(wordSeparator)
         }
     }
 }

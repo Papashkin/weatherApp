@@ -1,9 +1,9 @@
 package com.example.weatherapp
 
+import com.example.weatherapp.forecast.models.*
 import com.example.weatherapp.observation.models.ObservationPOJO
 import com.example.weatherapp.observation.models.ObservationsModel
 import com.example.weatherapp.observation.models.StationDTO
-import com.example.weatherapp.forecast.models.*
 
 fun ForecastDTO.convertToForecastPojo(): ForecastPOJO {
     return ForecastPOJO(
@@ -104,22 +104,52 @@ fun StationDTO.convertToPOJO(timestamp: String): ObservationPOJO {
 
 fun ObservationPOJO.convertToDTO(): StationDTO {
     return StationDTO(
-            name = this.name,
-            wmocode = this.wmocode,
-            longitude = this.longitude,
-            latitude = this.latitude,
-            phenomenon = this.phenomenon,
-            visibility = this.visibility,
-            precipitations = this.precipitations,
-            airpressure = this.airpressure,
-            relativehumidity = this.relativehumidity,
-            airtemperature = this.airtemperature,
-            winddirection = this.winddirection,
-            windspeed = this.windspeed,
-            windspeedmax = this.windspeedmax,
-            waterlevel = this.waterlevel,
-            waterlevel_eh2000 = this.waterlevel_eh2000,
-            watertemperature = this.watertemperature,
-            uvindex = this.uvindex
+        name = this.name,
+        wmocode = this.wmocode,
+        longitude = this.longitude,
+        latitude = this.latitude,
+        phenomenon = this.phenomenon,
+        visibility = this.visibility,
+        precipitations = this.precipitations,
+        airpressure = this.airpressure,
+        relativehumidity = this.relativehumidity,
+        airtemperature = this.airtemperature,
+        winddirection = this.winddirection,
+        windspeed = this.windspeed,
+        windspeedmax = this.windspeedmax,
+        waterlevel = this.waterlevel,
+        waterlevel_eh2000 = this.waterlevel_eh2000,
+        watertemperature = this.watertemperature,
+        uvindex = this.uvindex
     )
+}
+
+class NumbersToWords {
+
+    private val tensNames: Array<String> = arrayOf(
+        "", "ten", "twenty", "thirty", "forty",
+        "fifty", "sixty", "seventy", "eighty", "ninety"
+    )
+
+    private val numNames = arrayOf(
+        "", "one", "two", "three", "four", "five",
+        "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen",
+        "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+    )
+
+    fun convert(number: Int): String {
+        if (number == 0) return "zero"
+
+        val output = mutableListOf<String>()
+        if (number < 0) {
+            output.add("minus")
+        }
+        if (number % 100 < 20) {
+            output.add(numNames[number % 100])
+        } else {
+            output.add(tensNames[number / 10])
+            output.add(numNames[number % 10])
+        }
+        return output.joinToString(" ")
+    }
 }

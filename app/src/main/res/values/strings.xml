@@ -12,6 +12,7 @@
     <string name="forecasts_title">Forecasts</string>
 
     <!-- ==== OBSERVATION SCREEN ==== -->
+    <string name="observation_title">Stations: %s</string>
     <string name="observation_location">Location:</string>
     <string name="observation_phenomenon">Phenomenon:</string>
     <string name="observation_visibility">Visibility:</string>

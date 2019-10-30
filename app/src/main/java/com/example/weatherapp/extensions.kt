@@ -1,5 +1,8 @@
 package com.example.weatherapp
 
+import com.example.weatherapp.cityCurrentForecast.models.ObservationPOJO
+import com.example.weatherapp.cityCurrentForecast.models.ObservationsModel
+import com.example.weatherapp.cityCurrentForecast.models.StationDTO
 import com.example.weatherapp.forecast.models.*
 
 fun ForecastDTO.convertToForecastPojo(): ForecastPOJO {
@@ -69,4 +72,54 @@ fun DayNightPOJO.convertToDTO(places: List<PlaceDTO>?, winds: List<WindDTO>?): D
 
 fun ForecastPOJO.convertToDTO(day: DayNightDTO?, night: DayNightDTO?): ForecastDTO {
     return ForecastDTO(date = this.date, day = day, night = night)
+}
+
+fun ObservationsModel.convertToPOJO(): List<ObservationPOJO> {
+    return this.observations.map { it.convertToPOJO(this.timestamp) }
+}
+
+fun StationDTO.convertToPOJO(timestamp: String): ObservationPOJO {
+    return ObservationPOJO(
+        id = 0L,
+        name = this.name,
+        wmocode = this.wmocode,
+        longitude = this.longitude,
+        latitude = this.latitude,
+        phenomenon = this.phenomenon,
+        visibility = this.visibility,
+        precipitations = this.precipitations,
+        airpressure = this.airpressure,
+        relativehumidity = this.relativehumidity,
+        airtemperature = this.airtemperature,
+        winddirection = this.winddirection,
+        windspeed = this.windspeed,
+        windspeedmax = this.windspeedmax,
+        waterlevel = this.waterlevel,
+        waterlevel_eh2000 = this.waterlevel_eh2000,
+        watertemperature = this.watertemperature,
+        uvindex = this.uvindex,
+        timestamp = timestamp
+    )
+}
+
+fun ObservationPOJO.convertToDTO(): StationDTO {
+    return StationDTO(
+            name = this.name,
+            wmocode = this.wmocode,
+            longitude = this.longitude,
+            latitude = this.latitude,
+            phenomenon = this.phenomenon,
+            visibility = this.visibility,
+            precipitations = this.precipitations,
+            airpressure = this.airpressure,
+            relativehumidity = this.relativehumidity,
+            airtemperature = this.airtemperature,
+            winddirection = this.winddirection,
+            windspeed = this.windspeed,
+            windspeedmax = this.windspeedmax,
+            waterlevel = this.waterlevel,
+            waterlevel_eh2000 = this.waterlevel_eh2000,
+            watertemperature = this.watertemperature,
+            uvindex = this.uvindex
+    )
 }

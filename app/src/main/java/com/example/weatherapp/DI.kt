@@ -3,7 +3,8 @@ package com.example.weatherapp
 import android.content.Context
 import android.util.Log
 import androidx.room.Room
-import com.example.weatherapp.cityCurrentForecast.CityCurrentForecastFragment
+import com.example.weatherapp.cityCurrentForecast.ObservationFragment
+import com.example.weatherapp.cityCurrentForecast.domain.ObservationDao
 import com.example.weatherapp.forecast.ForecastFragment
 import com.example.weatherapp.forecast.domain.ForecastDao
 import com.moczul.ok2curl.CurlInterceptor
@@ -52,10 +53,15 @@ class AppModule(private val context: Context) {
     fun forecastDao(database: WeatherDatabase): ForecastDao {
         return database.forecastDao()
     }
+
+    @Provides
+    fun observationDao(database: WeatherDatabase): ObservationDao {
+        return database.observationDao()
+    }
 }
 
 @Component(modules = [AppModule::class])
 interface WeatherAppComponent {
     fun inject(fragment: ForecastFragment)
-    fun inject(fragment: CityCurrentForecastFragment)
+    fun inject(fragment: ObservationFragment)
 }

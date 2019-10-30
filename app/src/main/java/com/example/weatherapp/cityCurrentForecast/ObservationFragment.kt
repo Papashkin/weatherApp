@@ -9,18 +9,18 @@ import com.example.weatherapp.R
 import com.example.weatherapp.base.BaseFragment
 import com.example.weatherapp.cityCurrentForecast.models.StationDTO
 import com.example.weatherapp.di
-import kotlinx.android.synthetic.main.fragment_city_weather_info.*
+import kotlinx.android.synthetic.main.fragment_observation.*
 import moxy.ktx.moxyPresenter
 import javax.inject.Inject
 
-class CityCurrentForecastFragment :
-    CityCurrentForecastView,
-    BaseFragment(R.layout.fragment_city_weather_info) {
+class ObservationFragment :
+    ObservationView,
+    BaseFragment(R.layout.fragment_observation) {
 
     @Inject
-    lateinit var factory: CityCurrentForecastPresenterFactory
+    lateinit var factory: ObservationPresenterFactory
 
-    private val args: CityCurrentForecastFragmentArgs by navArgs()
+    private val args: ObservationFragmentArgs by navArgs()
 
     private val backPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -28,7 +28,7 @@ class CityCurrentForecastFragment :
         }
     }
 
-    private val presenter: CityCurrentForecastPresenter by moxyPresenter { factory.create(args.name) }
+    private val presenter: ObservationPresenter by moxyPresenter { factory.create(args.name) }
 
     private val adapter: ObservationsAdapter = ObservationsAdapter()
 
@@ -49,6 +49,6 @@ class CityCurrentForecastFragment :
     }
 
     override fun showErrorToast() {
-        showToast("No data to show loading from internet")
+        showToast("No data to show")
     }
 }

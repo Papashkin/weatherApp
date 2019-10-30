@@ -1,14 +1,11 @@
 package com.example.weatherapp.base
 
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.*
 import moxy.MvpPresenter
 import moxy.MvpView
 import kotlin.coroutines.CoroutineContext
 
-abstract class BasePresenter<TView: MvpView>: MvpPresenter<TView>(), CoroutineScope {
+abstract class BasePresenter<TView : MvpView> : MvpPresenter<TView>(), CoroutineScope {
     private val job = SupervisorJob()
 
     private val errorHandler = CoroutineExceptionHandler { _, throwable ->

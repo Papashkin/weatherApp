@@ -33,8 +33,8 @@ interface ForecastView : MvpView {
 @AutoFactory
 @InjectViewState
 class ForecastPresenter @Inject constructor(
-    @Provided val getForecasts: GetForecasts,
-    @Provided val forecastRepo: ForecastRepo
+    @Provided private val getForecasts: GetForecasts,
+    @Provided private val forecastRepo: ForecastRepo
 ) : BasePresenter<ForecastView>() {
 
     fun loadData() = launch {

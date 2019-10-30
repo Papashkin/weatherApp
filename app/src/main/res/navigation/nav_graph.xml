@@ -9,14 +9,14 @@
         android:name="com.example.weatherapp.forecast.ForecastFragment"
         android:label="ForecastFragment">
         <action
-            android:id="@+id/action_forecastFragment_to_cityCurrentForecastFragment"
-            app:destination="@id/cityCurrentForecastFragment" />
+            android:id="@+id/action_forecastFragment_to_observationFragment"
+            app:destination="@id/observationFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/cityCurrentForecastFragment"
-        android:name="com.example.weatherapp.cityCurrentForecast.CityCurrentForecastFragment"
-        android:label="CityCurrentForecastFragment" >
+        android:id="@+id/observationFragment"
+        android:name="com.example.weatherapp.cityCurrentForecast.ObservationFragment"
+        android:label="ObservationFragment" >
         <argument
             android:name="name"
             app:argType="string" />

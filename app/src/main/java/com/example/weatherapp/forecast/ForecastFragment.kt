@@ -42,6 +42,6 @@ class ForecastFragment :
 
     override fun toCityDetails(name: String) {
         findNavController().navigate(
-            ForecastFragmentDirections.actionForecastFragmentToCityCurrentForecastFragment(name))
+            ForecastFragmentDirections.actionForecastFragmentToObservationFragment(name))
     }
 }

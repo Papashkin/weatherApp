@@ -126,7 +126,7 @@ fun ObservationPOJO.convertToDTO(): StationDTO {
 
 class NumbersToWords {
 
-    private val tensNames: Array<String> = arrayOf(
+    private val tensNames = arrayOf(
         "", "ten", "twenty", "thirty", "forty",
         "fifty", "sixty", "seventy", "eighty", "ninety"
     )
